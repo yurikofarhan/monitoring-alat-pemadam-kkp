@@ -274,7 +274,7 @@ public class Data_Alat extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 1160, 70));
@@ -358,15 +358,15 @@ public class Data_Alat extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-DetailAlat d = new DetailAlat(this, true);
-
-
-// sementara kosong (nanti isi dari database)
-d.setData(
-    "", "", "", "", "", "", ""
-);
-
-d.setVisible(true);
+//DetailAlat d = new DetailAlat(this, true);
+//
+//
+//// sementara kosong (nanti isi dari database)
+//d.setData(
+//    "", "", "", "", "", "", ""
+//);
+//
+//d.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
