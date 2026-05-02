@@ -4,7 +4,7 @@
 
 package com.pemadam.monitoring;
 
-import com.pemadam.monitoring.view.Test;
+import com.pemadam.monitoring.view.Main;
 
 /**
  *
@@ -13,6 +13,6 @@ import com.pemadam.monitoring.view.Test;
 public class MonitoringAlatPemadamKkp {
 
     public static void main(String[] args) {
-            new Test().setVisible(true);
+            new Main().setVisible(true);
     }
 }
