@@ -8,14 +8,14 @@ package com.pemadam.monitoring.view;
  *
  * @author Yuriko
  */
-public class Test extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Test.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
 
     /**
      * Creates new form test
      */
-    public Test() {
+    public Main() {
         initComponents();
     }
 
@@ -76,7 +76,7 @@ public class Test extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Test().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Main().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
