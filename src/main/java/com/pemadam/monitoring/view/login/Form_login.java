@@ -4,7 +4,7 @@
  */
 package com.pemadam.monitoring.view.login;
 import com.pemadam.monitoring.config.Koneksi;
-import com.pemadam.monitoring.view.Test;
+import com.pemadam.monitoring.view.Main;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -171,7 +171,7 @@ public class Form_login extends javax.swing.JFrame {
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         try {
             Connection conn = Koneksi.getConnection();
-            String sql = "SELECT * FROM users WHERE id=? AND password=?";
+            String sql = "SELECT * FROM pengguna WHERE id=? AND password=?";
             PreparedStatement pst = conn.prepareStatement(sql);
              
              pst.setString(1, txtid.getText());
@@ -183,10 +183,10 @@ public class Form_login extends javax.swing.JFrame {
                  
                  if (role.equals("admin")){
                  JOptionPane.showMessageDialog(null, "Login sebagai Admin"); 
-                 new Test().setVisible(true);
+                 new Main().setVisible(true);
                  } else {
                   JOptionPane.showMessageDialog(null, "Login sebagai USER");
-                 new Test().setVisible(true);
+                 new Main().setVisible(true);
                  }
                  this.dispose();
              } else {
