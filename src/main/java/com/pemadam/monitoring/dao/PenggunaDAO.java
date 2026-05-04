@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,7 +43,7 @@ public class PenggunaDAO {
             }
 
         } catch (Exception e) {
-            e.printStackTrace(); // penting untuk lihat error asli
+            e.printStackTrace(); 
         }
 
         return list;
@@ -149,6 +150,7 @@ public class PenggunaDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
             return false;
         }
     }
