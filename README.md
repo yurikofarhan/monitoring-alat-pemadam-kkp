@@ -11,13 +11,13 @@ erDiagram
     lokasi_alat ||--o{ alat : "memiliki"
     pengguna ||--o{ inspeksi_alat : "melakukan"
     pengguna ||--o{ maintenance_alat : "melakukan"
-    inspeksi_alat ||--o{ maintenance_alat : "memicu"
+    pengguna ||--o{ log_aktivitas : "menciptakan"
 
     alat {
         int id_alat PK
         varchar kode_alat
         varchar nama_alat
-        enum jenis_alat
+        enum jenis_alat "APAR, APAB, HYDRANT, SPRINKLER, SUPPRESSION, PENDUKUNG, PROTEKSI"
         datetime tanggal_pembelian
         varchar image
         varchar deskripsi
@@ -34,7 +34,7 @@ erDiagram
         varchar password
         varchar no_telp
         varchar image
-        enum role
+        enum role "admin, petugas"
         datetime created_at
         datetime updated_at
     }
@@ -49,9 +49,9 @@ erDiagram
     inspeksi_alat {
         int id_inspeksi PK
         datetime tanggal_inspeksi
-        enum kondisi
-        enum status
-        enum status_inspeksi
+        enum kondisi "baik, cukup, rusak_ringan, rusak_berat, tidak_lengkap"
+        enum status "layak, perlu_perawatan, tidak_layak, maintenance, hilang"
+        enum status_inspeksi "draf, proses, selesai"
         varchar keterangan
         int id_pengguna FK
         int id_alat FK
@@ -64,11 +64,20 @@ erDiagram
         datetime tanggal_mulai
         datetime tanggal_selesai
         varchar bukti_image
-        enum status
+        enum status "proses, selesai"
         varchar keterangan
         int id_alat FK
         int id_inspeksi FK
         int id_pengguna FK
+    }
+
+    log_aktivitas {
+        int id_log PK
+        int id_pengguna FK
+        datetime waktu
+        varchar aksi
+        varchar tabel_terkait
+        varchar deskripsi
     }
 
 ```
