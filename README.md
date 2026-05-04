@@ -2,7 +2,7 @@
 
 ## 📊 Entity Relationship Diagram (ERD)
 
-Berikut adalah visualisasi struktur database yang digunakan dalam sistem ini:
+Berikut adalah visualisasi struktur database yang akan digunakan dalam sistem ini:
 
 ```mermaid
 erDiagram
