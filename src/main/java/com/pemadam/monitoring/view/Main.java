@@ -7,6 +7,7 @@ package com.pemadam.monitoring.view;
 import com.pemadam.monitoring.view.alat.Alat;
 import com.pemadam.monitoring.view.dashboard.Dashboard;
 import com.pemadam.monitoring.view.lokasi.Lokasi;
+import com.pemadam.monitoring.view.maintenance.Maintenance;
 import com.pemadam.monitoring.view.pengguna.Pengguna;
 
 /**
@@ -166,6 +167,11 @@ public class Main extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jLabel5.setText("Maintenance Alat");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -337,6 +343,14 @@ public class Main extends javax.swing.JFrame {
         panelUtama.repaint();
         panelUtama.revalidate();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        panelUtama.removeAll();
+        panelUtama.add(new Maintenance());
+        panelUtama.repaint();
+        panelUtama.revalidate();
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
      * @param args the command line arguments
