@@ -16,6 +16,30 @@ public class Maintenance extends javax.swing.JPanel {
     public Maintenance() {
         initComponents();
     }
+    
+    
+//    DefaultTableModel model = (DefaultTableModel)jTable.getModel();
+//    model.addrow(new object[] (jTextkd_alat.getText(), jTextmn_alat.getText(),
+//                              jTextjns_alat.getText(), jTextlks.getText(), jTexttgl.getText()));
+//
+//    //kode untuk tanggal//
+//    String tampilan = "yyyy-MM-dd";
+//    SimpleDateFormat fm = new SimpleDateFormat(tampilan);
+//    String tanggal = String.valueOf(fm.format(tgl.getDate))));
+//
+//    //kode combo cox
+//    String alat;
+//    alat = "";
+//    if (alat.isSelected()){
+//            alat += alat.getText() + ", ";
+//    }
+//    if (alat.isSelected()){
+//            alat += alat.getText() + ", ";
+//    {
+//    else {
+//            alat = alat.substring(0, alat.length()-2) + ".";
+//    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
