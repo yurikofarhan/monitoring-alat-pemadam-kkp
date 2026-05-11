@@ -6,6 +6,7 @@ package com.pemadam.monitoring.view;
 
 import com.pemadam.monitoring.view.alat.Alat;
 import com.pemadam.monitoring.view.dashboard.Dashboard;
+import com.pemadam.monitoring.view.inspeksi.Inspeksi;
 import com.pemadam.monitoring.view.lokasi.Lokasi;
 import com.pemadam.monitoring.view.maintenance.Maintenance;
 import com.pemadam.monitoring.view.pengguna.Pengguna;
@@ -146,6 +147,11 @@ public class Main extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jLabel4.setText("Inspeksi Alat");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -351,6 +357,14 @@ public class Main extends javax.swing.JFrame {
         panelUtama.repaint();
         panelUtama.revalidate();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        panelUtama.removeAll();
+        panelUtama.add(new Inspeksi());
+        panelUtama.repaint();
+        panelUtama.revalidate();
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
