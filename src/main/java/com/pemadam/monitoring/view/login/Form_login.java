@@ -3,11 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.pemadam.monitoring.view.login;
-import com.pemadam.monitoring.config.Koneksi;
+import com.pemadam.monitoring.config.Session;
+import com.pemadam.monitoring.controller.AuthController;
+import com.pemadam.monitoring.model.PenggunaModel;
 import com.pemadam.monitoring.view.Main;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 /**
  *
@@ -22,6 +21,7 @@ public class Form_login extends javax.swing.JFrame {
      */
     public Form_login() {
         initComponents();
+        getRootPane().setDefaultButton(btnlogin);
     }
     
 
@@ -39,9 +39,9 @@ public class Form_login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtid = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtpassword = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         btnlogin = new javax.swing.JButton();
         btnlogin1 = new javax.swing.JButton();
         Checkbox = new javax.swing.JCheckBox();
@@ -50,7 +50,7 @@ public class Form_login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 51, 51));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/damkar.png"))); // NOI18N
+        
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Javanese Text", 1, 24)); // NOI18N
@@ -87,7 +87,7 @@ public class Form_login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ID PETUGAS");
+        jLabel2.setText("Username");
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -128,9 +128,9 @@ public class Form_login extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Checkbox)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(93, 93, 93))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnlogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,13 +147,13 @@ public class Form_login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Checkbox)
                         .addGap(114, 174, Short.MAX_VALUE))
@@ -169,32 +169,28 @@ public class Form_login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        try {
-            Connection conn = Koneksi.getConnection();
-            String sql = "SELECT * FROM pengguna WHERE id=? AND password=?";
-            PreparedStatement pst = conn.prepareStatement(sql);
-             
-             pst.setString(1, txtid.getText());
-             pst.setString(2, txtpassword.getText());
-             ResultSet rs = pst.executeQuery();
-             
-             if (rs.next()){
-                 String role = rs.getString("role");
-                 
-                 if (role.equals("admin")){
-                 JOptionPane.showMessageDialog(null, "Login sebagai Admin"); 
-                 new Main().setVisible(true);
-                 } else {
-                  JOptionPane.showMessageDialog(null, "Login sebagai USER");
-                 new Main().setVisible(true);
-                 }
-                 this.dispose();
-             } else {
-                 JOptionPane.showMessageDialog(null, "Username / Password salah");
-             }
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(this, "Error: "+ e.getMessage());
+        String input = txtUsername.getText();
+        String password = new String(txtPassword.getPassword());
+
+        if (input.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username/Email & Password wajib diisi!");
+            return;
         }
+
+        AuthController controller = new AuthController();
+        PenggunaModel user = controller.login(input, password);
+
+        if (user != null) {
+
+            Session.setUser(user);
+
+//            JOptionPane.showMessageDialog(this, "Login berhasil!");
+
+            new Main().setVisible(true);
+            this.dispose();
+
+        } else 
+            JOptionPane.showMessageDialog(this, "Login gagal!");
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void btnlogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogin1ActionPerformed
@@ -203,9 +199,9 @@ public class Form_login extends javax.swing.JFrame {
 
     private void CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckboxActionPerformed
         if(Checkbox.isSelected()){
-            txtpassword.setEchoChar((char)0);
+            txtPassword.setEchoChar((char)0);
         }else {
-            txtpassword.setEchoChar('*');
+            txtPassword.setEchoChar('*');
         }
     }//GEN-LAST:event_CheckboxActionPerformed
 
@@ -244,7 +240,7 @@ public class Form_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtid;
-    private javax.swing.JPasswordField txtpassword;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

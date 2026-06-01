@@ -44,25 +44,31 @@ public class LokasiDAO {
         return list;
     }
     
-    public boolean insert(LokasiModel l) {
+    public int insert(LokasiModel l) {
 
         String sql = "INSERT INTO lokasi_alat "
                 + "(nama_lokasi, lantai, gedung) "
                 + "VALUES (?, ?, ?)";
 
         try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, l.getNamaLokasi());
             ps.setString(2, l.getLantai());
             ps.setString(3, l.getGedung());
-
-            return ps.executeUpdate() > 0;
+            
+            ps.executeUpdate();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return 0;
         }
+        return 0;
     }
     
     public boolean update(LokasiModel l) {

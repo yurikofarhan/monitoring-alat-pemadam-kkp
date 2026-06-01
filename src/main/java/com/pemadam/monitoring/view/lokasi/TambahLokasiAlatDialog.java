@@ -296,7 +296,6 @@ public class TambahLokasiAlatDialog extends javax.swing.JDialog {
                 return;
             }
 
-            // selalu INSERT (id = 0 atau auto increment)
             LokasiModel lokasi = new LokasiModel(
                 0,
                 txtNama.getText(),

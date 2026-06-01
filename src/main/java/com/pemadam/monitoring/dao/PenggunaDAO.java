@@ -9,6 +9,7 @@ import com.pemadam.monitoring.model.PenggunaModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -49,27 +50,33 @@ public class PenggunaDAO {
         return list;
     }
     
-    public boolean insert(PenggunaModel p) {
+    public int insert(PenggunaModel p) {
 
         String sql = "INSERT INTO pengguna "
                 + "(nama_pengguna, username, password, no_telp, role) "
                 + "VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, p.getNamaPengguna());
             ps.setString(2, p.getUsername());
             ps.setString(3, p.getPassword());
             ps.setString(4, p.getNoTelp());
             ps.setString(5, p.getRole());
+            
+            ps.executeUpdate();
 
-            return ps.executeUpdate() > 0;
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return 0;
         }
+        return 0;
     }
     
     public boolean update(PenggunaModel p) {
@@ -153,6 +160,35 @@ public class PenggunaDAO {
             JOptionPane.showMessageDialog(null, e.getMessage());
             return false;
         }
+    }
+    
+    public PenggunaModel getByUsername(String input) {
+
+        String sql = "SELECT * FROM pengguna WHERE username=?";
+
+        try (Connection conn = Koneksi.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, input);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new PenggunaModel(
+                        rs.getInt("id_pengguna"),
+                        rs.getString("nama_pengguna"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("no_telp"),
+                        rs.getString("role")
+                );
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
     
 }

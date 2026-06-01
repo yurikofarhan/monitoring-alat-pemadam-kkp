@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 08, 2026 at 06:58 AM
+-- Generation Time: Jun 01, 2026 at 01:32 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.4.12
 
@@ -61,6 +61,14 @@ CREATE TABLE `inspeksi_alat` (
   `id_alat` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `inspeksi_alat`
+--
+
+INSERT INTO `inspeksi_alat` (`id_inspeksi`, `tanggal_inspeksi`, `kondisi`, `status`, `status_inspeksi`, `keterangan`, `id_pengguna`, `id_alat`) VALUES
+(1, '2026-05-02 00:00:00', 'baik', 'layak', 'selesai', 'ok', 1, 1),
+(2, '2026-06-03 00:00:00', 'baik', 'perlu_perawatan', 'proses', 'mt', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -70,11 +78,34 @@ CREATE TABLE `inspeksi_alat` (
 CREATE TABLE `log_aktivitas` (
   `id_log` int NOT NULL,
   `id_pengguna` int NOT NULL,
-  `waktu` datetime NOT NULL,
+  `waktu` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `aksi` varchar(255) NOT NULL,
   `tabel_terkait` varchar(255) NOT NULL,
+  `record_id` int DEFAULT NULL,
   `deskripsi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `log_aktivitas`
+--
+
+INSERT INTO `log_aktivitas` (`id_log`, `id_pengguna`, `waktu`, `aksi`, `tabel_terkait`, `record_id`, `deskripsi`) VALUES
+(1, 1, '2026-06-01 18:38:20', 'UPDATE', 'alat', 5, 'Mengubah data Alat A003'),
+(2, 1, '2026-06-01 18:56:33', 'UPDATE', 'alat', 5, 'Mengubah data Alat A003'),
+(3, 1, '2026-06-01 19:02:38', 'DELETE', 'alat', 5, 'Mengubah data Alat A003'),
+(4, 1, '2026-06-01 19:15:50', 'INSERT', 'alat', 6, 'Menambah data Alat test'),
+(5, 1, '2026-06-01 19:21:10', 'INSERT', 'alat', 7, 'Menambah data Alat 123'),
+(6, 1, '2026-06-01 19:24:11', 'DELETE', 'alat', 7, 'Menghapus data Alat 123'),
+(7, 1, '2026-06-01 19:52:46', 'DELETE', 'alat', 6, 'Menghapus data Alat test'),
+(8, 1, '2026-06-01 20:04:36', 'INSERT', 'lokasi', 9, 'Menambah data Lokasi 9'),
+(9, 1, '2026-06-01 20:19:42', 'UPDATE', 'lokasi', 9, 'Mengubah data Lokasi 9'),
+(10, 1, '2026-06-01 20:19:55', 'DELETE', 'lokasi', 9, 'Menghapus data Lokasi 9'),
+(11, 1, '2026-06-01 20:20:01', 'INSERT', 'lokasi', 10, 'Menambah data Lokasi 10'),
+(12, 1, '2026-06-01 20:20:19', 'DELETE', 'lokasi', 10, 'Menghapus data Lokasi 10'),
+(13, 1, '2026-06-01 20:20:49', 'INSERT', 'pengguna', 5, 'Menambah data Pengguna 5'),
+(14, 1, '2026-06-01 20:21:03', 'UPDATE', 'pengguna', 5, 'Mengubah data Pengguna 5'),
+(15, 1, '2026-06-01 20:21:35', 'DELETE', 'pengguna', 5, 'Menghapus data Pengguna 5'),
+(16, 1, '2026-06-01 20:30:23', 'INSERT', 'inspeksi', 2, 'Menambah data Inspeksi pada Id Alat 1');
 
 -- --------------------------------------------------------
 
@@ -138,8 +169,8 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id_pengguna`, `nama_pengguna`, `username`, `password`, `no_telp`, `role`) VALUES
-(1, 'Admin', 'admin', 'admin', '0812345678', 'admin'),
-(2, 'Petugas', 'petugas', 'petugas', '089876543', 'petugas');
+(1, 'Admin', 'admin', '$2a$10$ZjrLbvPBdTAX8WFQdyxiK.225auVM0dF/I4L1RKx5CrBVLGW6vZqi', '0812345678', 'admin'),
+(2, 'Petugas', 'petugas', '$2a$10$S7uTXr9T83f7W.ZDB6ngxOFcCHltUVA2jfg3D7rvKqSiJYrsyTuD.', '089876543', 'petugas');
 
 --
 -- Triggers `pengguna`
@@ -209,25 +240,25 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `alat`
 --
 ALTER TABLE `alat`
-  MODIFY `id_alat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_alat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `inspeksi_alat`
 --
 ALTER TABLE `inspeksi_alat`
-  MODIFY `id_inspeksi` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_inspeksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `id_log` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_log` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `lokasi_alat`
 --
 ALTER TABLE `lokasi_alat`
-  MODIFY `id_lokasi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_lokasi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `maintenance_alat`
@@ -239,7 +270,7 @@ ALTER TABLE `maintenance_alat`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pengguna` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
