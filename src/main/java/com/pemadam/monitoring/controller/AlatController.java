@@ -4,7 +4,9 @@
  */
 package com.pemadam.monitoring.controller;
 
+import com.pemadam.monitoring.config.Session;
 import com.pemadam.monitoring.dao.AlatDAO;
+import com.pemadam.monitoring.dao.LogAktivitasDAO;
 import com.pemadam.monitoring.model.AlatModel;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
  * @author Yuriko
  */
 public class AlatController {
-    private AlatDAO dao = new AlatDAO();
+    private final AlatDAO dao = new AlatDAO();
 
     public List<AlatModel> getAllAlat() {
         return dao.getAll();
@@ -22,19 +24,21 @@ public class AlatController {
     public boolean insertAlat(AlatModel alat) {
 
         try {
-            // VALIDASI
             if (alat.getKodeAlat() == null || alat.getKodeAlat().isEmpty()) {
                 throw new IllegalArgumentException("Kode alat wajib diisi");
             }
 
-            AlatDAO alatDAO = new AlatDAO();
-//            InspeksiDAO inspeksiDAO = new InspeksiDAO();
 
-            int idAlat = alatDAO.insert(alat);
-//            System.out.println("ID ALAT: " + idAlat);
+            int id = dao.insert(alat);
             
-            if (idAlat > 0) {
-//                inspeksiDAO.insertAwal(idAlat);
+            if (id > 0) {
+                LogAktivitasDAO.simpan(
+                        Session.getUser().getIdPengguna(),
+                        "INSERT",
+                        "alat",
+                        id,
+                        "Menambah Data Alat " + alat.getKodeAlat()
+                );
                 return true;
             }
 
@@ -46,7 +50,19 @@ public class AlatController {
     }
 
     public boolean updateAlat(AlatModel alat) {
-        return dao.update(alat);
+        boolean berhasil = dao.update(alat);
+        if (berhasil) {
+
+            LogAktivitasDAO.simpan(
+                    Session.getUser().getIdPengguna(),
+                    "UPDATE",
+                    "alat",
+                    alat.getIdAlat(),
+                    "Mengubah data Alat " + alat.getKodeAlat()
+            );
+        }
+
+        return berhasil;
     }
 
     public AlatModel getAlatById(int id) {
@@ -54,7 +70,21 @@ public class AlatController {
     }
 
     public boolean deleteAlat(int id) {
-        return dao.delete(id);
+        AlatModel alat = getAlatById(id);
+        boolean berhasil = dao.delete(id);
+        if (berhasil) {
+
+            LogAktivitasDAO.simpan(
+                    Session.getUser().getIdPengguna(),
+                    "DELETE",
+                    "alat",
+                    alat.getIdAlat(),
+                    "Menghapus data Alat " + alat.getKodeAlat()
+            );
+        }
+        
+        return berhasil;
+
     }
     
 }

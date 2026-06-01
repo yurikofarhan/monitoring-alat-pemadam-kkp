@@ -9,6 +9,8 @@ package com.pemadam.monitoring.controller;
  *
  * @author Yuriko
  */
+import com.pemadam.monitoring.config.Session;
+import com.pemadam.monitoring.dao.LogAktivitasDAO;
 import com.pemadam.monitoring.dao.PenggunaDAO;
 import com.pemadam.monitoring.model.PenggunaModel;
 import java.util.List;
@@ -21,16 +23,53 @@ public class PenggunaController {
         return dao.getAll();
     }
     public boolean insertPengguna(PenggunaModel p) {
-        return dao.insert(p);
+        int id = dao.insert(p);
+            
+            if (id > 0) {
+                LogAktivitasDAO.simpan(
+                        Session.getUser().getIdPengguna(),
+                        "INSERT",
+                        "pengguna",
+                        id,
+                        "Menambah data Pengguna " + id
+                );
+                return true;
+            }
+        return false;
     }
     public boolean updatePengguna(PenggunaModel p) {
-        return dao.update(p);
+        boolean berhasil = dao.update(p);
+        if (berhasil) {
+
+            LogAktivitasDAO.simpan(
+                    Session.getUser().getIdPengguna(),
+                    "UPDATE",
+                    "pengguna",
+                    p.getIdPengguna(),
+                    "Mengubah data Pengguna " + p.getIdPengguna()
+            );
+        }
+
+        return berhasil;
     }
     public PenggunaModel getPenggunaById(int id) {
         return dao.getById(id);
     }
     public boolean deletePengguna(int id) {
-        return dao.delete(id);
+        PenggunaModel alat = getPenggunaById(id);
+        boolean berhasil = dao.delete(id);
+        if (berhasil) {
+
+            LogAktivitasDAO.simpan(
+                    Session.getUser().getIdPengguna(),
+                    "DELETE",
+                    "pengguna",
+                    alat.getIdPengguna(),
+                    "Menghapus data Pengguna " + alat.getIdPengguna()
+            );
+        }
+        
+        return berhasil;
     }
 
 }
