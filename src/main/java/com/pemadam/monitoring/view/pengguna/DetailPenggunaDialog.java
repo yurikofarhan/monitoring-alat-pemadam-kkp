@@ -228,9 +228,9 @@ public class DetailPenggunaDialog extends javax.swing.JDialog {
             String finalPassword;
 
             if (inputPassword.isEmpty()) {
-                finalPassword = oldPassword; // pakai password lama
+                finalPassword = oldPassword; 
             } else {
-                finalPassword = BCrypt.hashpw(inputPassword, BCrypt.gensalt()); // hash
+                finalPassword = BCrypt.hashpw(inputPassword, BCrypt.gensalt()); 
             }
             
 

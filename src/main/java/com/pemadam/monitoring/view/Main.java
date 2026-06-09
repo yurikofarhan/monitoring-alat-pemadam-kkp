@@ -439,7 +439,6 @@ public class Main extends javax.swing.JFrame {
 
         if (confirm == JOptionPane.YES_OPTION) {
 
-            // HAPUS SESSION
             Session.clear();
 
             new Form_login().setVisible(true);
