@@ -5,7 +5,8 @@
 package com.pemadam.monitoring.view;
 
 import com.pemadam.monitoring.config.Session;
-import com.pemadam.monitoring.view.alat.Alat;
+import com.pemadam.monitoring.view.Alat.Alat;
+//import com.pemadam.monitoring.view.alat.Alat;
 import com.pemadam.monitoring.view.dashboard.Dashboard;
 import com.pemadam.monitoring.view.inspeksi.Inspeksi;
 import com.pemadam.monitoring.view.log.LogAktivitas;
