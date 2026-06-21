@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Yuriko
  */
-public class Alat extends javax.swing.JPanel {
+public class Alat3 extends javax.swing.JPanel {
 
     /**
      * Creates new form Alat
@@ -25,7 +25,7 @@ public class Alat extends javax.swing.JPanel {
     private AlatController controller =  new AlatController();
     java.awt.Frame parent = (java.awt.Frame)
     javax.swing.SwingUtilities.getWindowAncestor(this);
-    public Alat() {
+    public Alat3() {
         initComponents();
         tblAlat.setModel(new DefaultTableModel(
                 new Object[][]{},
