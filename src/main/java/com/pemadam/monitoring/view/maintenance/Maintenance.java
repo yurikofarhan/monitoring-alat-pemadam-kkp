@@ -3,42 +3,71 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.pemadam.monitoring.view.maintenance;
-
+import java.text.SimpleDateFormat;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author zy
  */
 public class Maintenance extends javax.swing.JPanel {
+        
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Maintenance.class.getName());
 
     /**
      * Creates new form Maintenance
      */
     public Maintenance() {
         initComponents();
+        
+        DefaultTableModel model = new DefaultTableModel();
+        
+        model.addColumn("Pilih Alat");
+        model.addColumn("Data Inspeksi");
+        model.addColumn("Kode Alat");
+        model.addColumn("Nama Alat");
+        model.addColumn("Jenis Alat");
+        model.addColumn("Lokasi");
+        model.addColumn("Tanggal Beli");
+        
+        tmaintenance.setModel(model);
+        
+        cmb.addItem("APAR");
+        cmb.addItem("Fire Hose 1.5 inch");
+        cmb.addItem("Fire Hose 2.5 inch");
+        cmb.addItem("Ground Fork");
+        cmb.addItem("Hooligan Tool");
+        cmb.addItem("Manifold");
+        cmb.addItem("Nozzle 1.5 inch");
+        cmb.addItem("Nozzle 2.5 inch");
+        cmb.addItem("Pickaxe");
+        cmb.addItem("SCBA(Self-Contained Breathing Apparatus)");
+        
+        cmbx1.addItem("Baik");
+        cmbx1.addItem("Rusak Ringan");
+        cmbx1.addItem("Rusak Berat");
+        
+        cmbx2.addItem("Non Mekanik");
+        cmbx2.addItem("Mekanik");
+        
+        cmbx3.addItem("Gudang");
+        cmbx3.addItem("Lab");
+        cmbx3.addItem("Kantor");
+        
+        DefaultTableModel model = new DefaultTableModel(
+        new String []{
+            "Pilih Alat",
+            "Data Inspeksi",
+            "Kode Alat",
+            "Nama Alat",
+            "Jenis Alat",
+            "Lokasi",
+            "Tanggal Beli"
+        },0);
+        
+       tmaintenance.setModel(model);
     }
     
-    
-//    DefaultTableModel model = (DefaultTableModel)jTable.getModel();
-//    model.addrow(new object[] (jTextkd_alat.getText(), jTextmn_alat.getText(),
-//                              jTextjns_alat.getText(), jTextlks.getText(), jTexttgl.getText()));
-//
-//    //kode untuk tanggal//
-//    String tampilan = "yyyy-MM-dd";
-//    SimpleDateFormat fm = new SimpleDateFormat(tampilan);
-//    String tanggal = String.valueOf(fm.format(tgl.getDate))));
-//
-//    //kode combo cox
-//    String alat;
-//    alat = "";
-//    if (alat.isSelected()){
-//            alat += alat.getText() + ", ";
-//    }
-//    if (alat.isSelected()){
-//            alat += alat.getText() + ", ";
-//    {
-//    else {
-//            alat = alat.substring(0, alat.length()-2) + ".";
-//    }
     
 
     /**
@@ -52,31 +81,32 @@ public class Maintenance extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        badd = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmb = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbx1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtkolat = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtnamlat = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbx2 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cmbx3 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tmaintenance = new javax.swing.JTable();
+        jDateChooser1 = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Maintenance ");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setText("Add");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        badd.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        badd.setText("Add");
+        badd.addActionListener(this::baddActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,8 +115,8 @@ public class Maintenance extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 490, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(badd, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
         );
         jPanel1Layout.setVerticalGroup(
@@ -94,7 +124,7 @@ public class Maintenance extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(badd, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(21, 21, 21))
         );
@@ -102,14 +132,14 @@ public class Maintenance extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText(" Plih Alat :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih Alat", " " }));
-        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih Alat", "APAR", "Fire Hose 1", "5 inch", "Fire Hose 2", "5 inch", "Ground Fork", "Hooligan Tool", "Manifold", "Nozzle 1", "5 inch", "Nozzle 2", "5 inch", "Pickaxe", "SCBA(Self-Contained Breathing Apparatus)" }));
+        cmb.addActionListener(this::cmbActionPerformed);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Pilih Data Inspeksi :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Data Inspeksi" }));
-        jComboBox2.addActionListener(this::jComboBox2ActionPerformed);
+        cmbx1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Data Inspeksi", "Baik", "Rusak Ringan", "Rusak Berat" }));
+        cmbx1.addActionListener(this::cmbx1ActionPerformed);
 
         jLabel3.setText("Kode Alat");
 
@@ -117,13 +147,16 @@ public class Maintenance extends javax.swing.JPanel {
 
         jLabel6.setText("Jenis Alat");
 
+        cmbx2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Non Mekanik", "Mekanik" }));
+        cmbx2.setFocusCycleRoot(true);
+
         jLabel7.setText("Lokasi");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        cmbx3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gudang", "Lab", "Kantor" }));
 
         jLabel8.setText("Tanggal Beli");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tmaintenance.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -134,7 +167,7 @@ public class Maintenance extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tmaintenance);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,27 +177,31 @@ public class Maintenance extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
                     .addComponent(jLabel7)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel5)
                         .addComponent(jLabel2)
-                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel6))
-                            .addGap(24, 24, 24)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox3, 0, 151, Short.MAX_VALUE)
-                                .addComponent(jTextField3)
-                                .addComponent(jTextField2)
-                                .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addComponent(cmbx1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateChooser1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6))
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbx2, 0, 151, Short.MAX_VALUE)
+                                    .addComponent(txtnamlat)
+                                    .addComponent(txtkolat)
+                                    .addComponent(cmbx3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,53 +212,87 @@ public class Maintenance extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbx1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(123, 123, 123)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtkolat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtnamlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbx2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel8))
+                            .addComponent(cmbx3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmbActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cmbx1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbx1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cmbx1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void baddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if(txtkolat.getText().isEmpty() ||
+           txtnamlat.getText().isEmpty()){
+            JOptionPane.showMessageDialog(This,"Data belum lengkap");
+            
+            return;
+        }
+        String alat = cmb.getSelectedItem().toString();
+        String inspeksi = cmbx1.getSelectedItem().toString();
+        String kode = txtkolat.getText();
+        String nama = txtnamlat.getText();
+        String jenis = cmbx2.getSelectedItem().toString();
+        String lokasi = cmbx3.getSelectedItem().toString();
+        
+        String tanggal = "";
+        
+        if(jDateChooser1.getDate() != null){
+           SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            tanggal = sdf.format(jDateChooser1.getDate());
+        }
+        
+        DefaultTableModel model = (DefaultTableModel)tmaintenance.getModel();
+        
+        model.addrow(new Object[]{
+        alat,
+        inspeksi,
+        kode,
+        nama,
+        jenis,
+        lokasi,
+        tanggal
+        });
+    }//GEN-LAST:event_baddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JButton badd;
+    private javax.swing.JComboBox<String> cmb;
+    private javax.swing.JComboBox<String> cmbx1;
+    private javax.swing.JComboBox<String> cmbx2;
+    private javax.swing.JComboBox<String> cmbx3;
+    private javax.swing.JTextField jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -232,8 +303,8 @@ public class Maintenance extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tmaintenance;
+    private javax.swing.JTextField txtkolat;
+    private javax.swing.JTextField txtnamlat;
     // End of variables declaration//GEN-END:variables
 }
