@@ -34,7 +34,7 @@ CREATE TABLE `alat` (
   `jenis_alat` enum('APAR','APAB','HYDRANT','SPRINKLER','SUPPRESSION','PENDUKUNG','PROTEKSI') NOT NULL,
   `tanggal_pembelian` datetime NOT NULL,
   `id_lokasi` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `alat`
@@ -59,7 +59,7 @@ CREATE TABLE `inspeksi_alat` (
   `keterangan` varchar(255) NOT NULL,
   `id_pengguna` int NOT NULL,
   `id_alat` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `inspeksi_alat`
@@ -83,7 +83,7 @@ CREATE TABLE `log_aktivitas` (
   `tabel_terkait` varchar(255) NOT NULL,
   `record_id` int DEFAULT NULL,
   `deskripsi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `log_aktivitas`
@@ -118,7 +118,7 @@ CREATE TABLE `lokasi_alat` (
   `nama_lokasi` varchar(100) NOT NULL,
   `lantai` varchar(10) NOT NULL,
   `gedung` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `lokasi_alat`
@@ -142,12 +142,12 @@ CREATE TABLE `maintenance_alat` (
   `tanggal_mulai` datetime NOT NULL,
   `tanggal_selesai` datetime NOT NULL,
   `bukti_image` varchar(255) NOT NULL,
-  `status` enum('pending','proses','selesai') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `status` enum('pending','proses','selesai') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `id_alat` int NOT NULL,
   `id_inspeksi` int NOT NULL,
   `id_pengguna` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -162,7 +162,7 @@ CREATE TABLE `pengguna` (
   `password` varchar(255) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
   `role` enum('admin','petugas') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `pengguna`
