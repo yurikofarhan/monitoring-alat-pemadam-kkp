@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.pemadam.monitoring.view.maintenance;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -33,15 +34,13 @@ public class Maintenance extends javax.swing.JPanel {
         tmaintenance.setModel(model);
         
         cmb.addItem("APAR");
-        cmb.addItem("Fire Hose 1.5 inch");
-        cmb.addItem("Fire Hose 2.5 inch");
-        cmb.addItem("Ground Fork");
-        cmb.addItem("Hooligan Tool");
+        cmb.addItem("APAB");
+        cmb.addItem("HYDRANT");
+        cmb.addItem("SPRINKLER");
+        cmb.addItem("SUPPRESSION");
         cmb.addItem("Manifold");
-        cmb.addItem("Nozzle 1.5 inch");
-        cmb.addItem("Nozzle 2.5 inch");
-        cmb.addItem("Pickaxe");
-        cmb.addItem("SCBA(Self-Contained Breathing Apparatus)");
+        cmb.addItem("PENDUKUNG");
+        cmb.addItem("PROTEKSI");
         
         cmbx1.addItem("Baik");
         cmbx1.addItem("Rusak Ringan");
@@ -243,6 +242,7 @@ public class Maintenance extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(txtkolat.getText().isEmpty() ||
            txtnamlat.getText().isEmpty()){
+            Component This;
             JOptionPane.showMessageDialog(This,"Data belum lengkap");
             
             return;
