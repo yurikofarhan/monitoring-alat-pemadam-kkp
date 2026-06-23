@@ -47,9 +47,6 @@ public class Maintenance extends javax.swing.JPanel {
         cmbx1.addItem("Rusak Ringan");
         cmbx1.addItem("Rusak Berat");
         
-        cmbx2.addItem("Non Mekanik");
-        cmbx2.addItem("Mekanik");
-        
         cmbx3.addItem("Gudang");
         cmbx3.addItem("Lab");
         cmbx3.addItem("Kantor");
@@ -97,7 +94,6 @@ public class Maintenance extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tmaintenance = new javax.swing.JTable();
-        jDateChooser1 = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 0, 0));
 
@@ -132,7 +128,7 @@ public class Maintenance extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText(" Plih Alat :");
 
-        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih Alat", "APAR", "Fire Hose 1", "5 inch", "Fire Hose 2", "5 inch", "Ground Fork", "Hooligan Tool", "Manifold", "Nozzle 1", "5 inch", "Nozzle 2", "5 inch", "Pickaxe", "SCBA(Self-Contained Breathing Apparatus)" }));
+        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih Alat" }));
         cmb.addActionListener(this::cmbActionPerformed);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -147,7 +143,6 @@ public class Maintenance extends javax.swing.JPanel {
 
         jLabel6.setText("Jenis Alat");
 
-        cmbx2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Non Mekanik", "Mekanik" }));
         cmbx2.setFocusCycleRoot(true);
 
         jLabel7.setText("Lokasi");
@@ -183,25 +178,21 @@ public class Maintenance extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addComponent(cmbx1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDateChooser1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6))
-                                .addGap(24, 24, 24)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbx2, 0, 151, Short.MAX_VALUE)
-                                    .addComponent(txtnamlat)
-                                    .addComponent(txtkolat)
-                                    .addComponent(cmbx3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addComponent(jLabel8)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel6))
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cmbx2, 0, 151, Short.MAX_VALUE)
+                                .addComponent(txtnamlat)
+                                .addComponent(txtkolat)
+                                .addComponent(cmbx3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,12 +224,10 @@ public class Maintenance extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(cmbx3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel8))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -292,7 +281,6 @@ public class Maintenance extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmbx1;
     private javax.swing.JComboBox<String> cmbx2;
     private javax.swing.JComboBox<String> cmbx3;
-    private javax.swing.JTextField jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
