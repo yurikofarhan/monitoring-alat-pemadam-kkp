@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.pemadam.monitoring.view.maintenance;
-import java.awt.Component;
-import java.text.SimpleDateFormat;
+import java.sql.Connection;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 /**
@@ -21,49 +20,22 @@ public class Maintenance extends javax.swing.JPanel {
     public Maintenance() {
         initComponents();
         
+       
         DefaultTableModel model = new DefaultTableModel();
         
-        model.addColumn("Pilih Alat");
-        model.addColumn("Data Inspeksi");
-        model.addColumn("Kode Alat");
-        model.addColumn("Nama Alat");
-        model.addColumn("Jenis Alat");
-        model.addColumn("Lokasi");
-        model.addColumn("Tanggal Beli");
+        model.addColumn("ID");
+        model.addColumn("Tanggal Mulai");
+        model.addColumn("Tanggal Selesai");
+        model.addColumn("Status");
+        model.addColumn("Keterangan");
+        model.addColumn("ID Alat");
+        model.addColumn("ID Inspeksi");
         
         tmaintenance.setModel(model);
         
-        cmb.addItem("APAR");
-        cmb.addItem("APAB");
-        cmb.addItem("HYDRANT");
-        cmb.addItem("SPRINKLER");
-        cmb.addItem("SUPPRESSION");
-        cmb.addItem("Manifold");
-        cmb.addItem("PENDUKUNG");
-        cmb.addItem("PROTEKSI");
-        
-        cmbx1.addItem("Baik");
-        cmbx1.addItem("Rusak Ringan");
-        cmbx1.addItem("Rusak Berat");
-        
-        cmbx3.addItem("Gudang");
-        cmbx3.addItem("Lab");
-        cmbx3.addItem("Kantor");
-        
-        DefaultTableModel model = new DefaultTableModel(
-        new String []{
-            "Pilih Alat",
-            "Data Inspeksi",
-            "Kode Alat",
-            "Nama Alat",
-            "Jenis Alat",
-            "Lokasi",
-            "Tanggal Beli"
-        },0);
-        
-       tmaintenance.setModel(model);
     }
     
+
     
 
     /**
@@ -142,6 +114,7 @@ public class Maintenance extends javax.swing.JPanel {
 
         jLabel6.setText("Jenis Alat");
 
+        cmbx2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "APAR", "APAB", "HYDRANT", "SPRINKLER", "SUPPRESSION", "PENDUKUNG", "PROTEKSI" }));
         cmbx2.setFocusCycleRoot(true);
 
         jLabel7.setText("Lokasi");
@@ -240,38 +213,44 @@ public class Maintenance extends javax.swing.JPanel {
 
     private void baddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baddActionPerformed
         // TODO add your handling code here:
-        if(txtkolat.getText().isEmpty() ||
-           txtnamlat.getText().isEmpty()){
-            Component This;
-            JOptionPane.showMessageDialog(This,"Data belum lengkap");
-            
-            return;
-        }
-        String alat = cmb.getSelectedItem().toString();
-        String inspeksi = cmbx1.getSelectedItem().toString();
-        String kode = txtkolat.getText();
-        String nama = txtnamlat.getText();
-        String jenis = cmbx2.getSelectedItem().toString();
-        String lokasi = cmbx3.getSelectedItem().toString();
-        
-        String tanggal = "";
-        
-        if(jDateChooser1.getDate() != null){
-           SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            tanggal = sdf.format(jDateChooser1.getDate());
-        }
-        
-        DefaultTableModel model = (DefaultTableModel)tmaintenance.getModel();
-        
-        model.addrow(new Object[]{
-        alat,
-        inspeksi,
-        kode,
-        nama,
-        jenis,
-        lokasi,
-        tanggal
-        });
+
+    String pilihAlat =
+            cmb.getSelectedItem().toString();
+
+    String dataInspeksi =
+            cmbx1.getSelectedItem().toString();
+
+    String kodeAlat =
+            txtkolat.getText();
+
+    String namaAlat =
+            txtnamlat.getText();
+
+    String jenisAlat =
+            cmbx2.getSelectedItem().toString();
+
+    String lokasi =
+            cmbx3.getSelectedItem().toString();
+
+    DefaultTableModel model =
+            (DefaultTableModel) tmaintenance.getModel();
+
+    model.addRow(new Object[]{
+        pilihAlat,
+        dataInspeksi,
+        kodeAlat,
+        namaAlat,
+        jenisAlat,
+        lokasi
+    });
+
+    JOptionPane.showMessageDialog(
+            null,
+            "Data Berhasil Ditambahkan");
+
+    txtkolat.setText("");
+    txtnamlat.setText("");
+
     }//GEN-LAST:event_baddActionPerformed
 
 
