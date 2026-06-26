@@ -214,7 +214,8 @@ public class Inspeksi extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 51, 51));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Inspeksi");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/icons8-inspection-32.png"))); // NOI18N
+        jLabel1.setText(" Inspeksi");
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnAdd.setText("Add");
@@ -229,10 +230,10 @@ public class Inspeksi extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(621, 621, 621)
-                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                .addGap(655, 655, 655)
+                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Detail)
                 .addGap(96, 96, 96))
