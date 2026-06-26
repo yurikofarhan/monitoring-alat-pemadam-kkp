@@ -159,7 +159,7 @@ public class tampilan extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                     .addContainerGap(201, Short.MAX_VALUE)
@@ -332,7 +332,7 @@ public class tampilan extends javax.swing.JFrame {
                 .addGap(691, 691, 691))
         );
 
-        jPanel1.setBackground(new java.awt.Color(27, 38, 59));
+        jPanel1.setBackground(new java.awt.Color(255, 0, 51));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -345,34 +345,41 @@ public class tampilan extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/pemadam/monitoring/images/Ikon_Aplikasi.png"))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(27, 38, 59));
+        jPanel2.setBackground(new java.awt.Color(255, 0, 0));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Dashboard");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/giga.png"))); // NOI18N
+        jLabel2.setText(" Dashboard");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/icons8-tools-32.png"))); // NOI18N
         jLabel3.setText("Manajemen Alat");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/icons8-setting-32.png"))); // NOI18N
         jLabel4.setText("Pengaturan");
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/icons8-master-32.png"))); // NOI18N
         jLabel5.setText("Maintenance");
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/icons8-inspection-32.png"))); // NOI18N
         jLabel6.setText("Inspeksi");
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/icons8-location-32.png"))); // NOI18N
         jLabel7.setText("Lokasi");
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/icons8-report-32.png"))); // NOI18N
         jLabel8.setText("Laporan");
 
         jLabel19.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
@@ -453,7 +460,7 @@ public class tampilan extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
