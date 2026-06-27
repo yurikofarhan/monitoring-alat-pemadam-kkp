@@ -6,74 +6,50 @@ package com.pemadam.monitoring.view.alat;
 
 
 import com.pemadam.monitoring.controller.AlatController;
+//import com.pemadam.monitoring.controller.JenisAlatController;
 import com.pemadam.monitoring.controller.LokasiController;
-import com.pemadam.monitoring.dao.AlatDAO;
 import com.pemadam.monitoring.model.AlatModel;
 import com.pemadam.monitoring.model.LokasiModel;
-import com.pemadam.monitoring.util.EnumUtil;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.*;
-
-
 
 /**
  *
  * @author Yuriko
  */
-public class DetailAlatDialog extends javax.swing.JDialog {
+public class TambahAlat extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DetailAlatDialog.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TambahAlat.class.getName());
 
     /**
      * Creates new form TambahPenggunaDialog
      */
     
-    AlatController controller = new AlatController();
-    
-    private AlatModel alatEdit = null;
-
-    public DetailAlatDialog(java.awt.Frame parent, boolean modal) {
+    public TambahAlat(java.awt.Frame parent, boolean modal) {
         super(parent, ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
-        
+
         initComponents();
-        
         loadJenisAlat();
-        loadLokasi();
-        
+        loadLokasi(); 
     }
-    
-    
-    public void setData(int id, String kode, String nama, String jenis, java.sql.Timestamp tgl, int idLokasi) {
-
-        this.alatEdit = new AlatModel(id, kode, nama, jenis, tgl, idLokasi);
-
-        txtKode.setText(kode);
-        txtNama.setText(nama);
-
-        if (tgl != null) {
-            dateBeli.setDate(new java.util.Date(tgl.getTime()));
-        }
-
-        cmbJenisAlat.setSelectedItem(alatEdit.getJenisAlat());
-        cmbLokasi.setSelectedItem(new LokasiModel(idLokasi));
-
-    }
-    
     
     private void loadJenisAlat() {
 
-        AlatDAO dao = new AlatDAO();
-
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
 
-        for (String s : dao.getEnumJenisAlat()) {
-            model.addElement(s);
-        }
-        cmbJenisAlat.setModel(model);
+           model.addElement("APAR");
+           model.addElement("APAB");
+           model.addElement("HYDRANT");
+           model.addElement("SPRINKLER");
+           model.addElement("SUPPRESSION");
+           model.addElement("PENDUKUNG");
+           model.addElement("PROTEKSI");
+
+           cmbJenisAlat.setModel(model);
+
     }
-    
     
     private void loadLokasi() {
 
@@ -87,7 +63,6 @@ public class DetailAlatDialog extends javax.swing.JDialog {
 
         cmbLokasi.setModel(model);
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,7 +102,6 @@ public class DetailAlatDialog extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         btnBatal = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
-        btnHapus = new javax.swing.JButton();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
@@ -217,7 +191,7 @@ public class DetailAlatDialog extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Detail Alat");
+        jLabel1.setText("Tambah Alat");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -226,7 +200,7 @@ public class DetailAlatDialog extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addContainerGap(330, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,6 +228,8 @@ public class DetailAlatDialog extends javax.swing.JDialog {
         jLabel4.setText("Data Alat");
 
         jLabel8.setText("Jenis Alat");
+
+        cmbJenisAlat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lt 1", "Lt 2" }));
 
         jLabel9.setText("Tanggal Beli");
 
@@ -311,7 +287,7 @@ public class DetailAlatDialog extends javax.swing.JDialog {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(dateBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -342,20 +318,12 @@ public class DetailAlatDialog extends javax.swing.JDialog {
         btnSimpan.setText("Simpan");
         btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
-        btnHapus.setBackground(new java.awt.Color(255, 51, 51));
-        btnHapus.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        btnHapus.setForeground(new java.awt.Color(255, 255, 255));
-        btnHapus.setText("Hapus");
-        btnHapus.addActionListener(this::btnHapusActionPerformed);
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(136, Short.MAX_VALUE)
-                .addComponent(btnHapus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(227, Short.MAX_VALUE)
                 .addComponent(btnBatal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSimpan)
@@ -367,8 +335,7 @@ public class DetailAlatDialog extends javax.swing.JDialog {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBatal)
-                    .addComponent(btnSimpan)
-                    .addComponent(btnHapus))
+                    .addComponent(btnSimpan))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -386,6 +353,8 @@ public class DetailAlatDialog extends javax.swing.JDialog {
             }
 
 
+
+            // DATE → Timestamp
             java.util.Date utilDate = dateBeli.getDate();
             java.sql.Timestamp tglBeli = null;
 
@@ -394,32 +363,28 @@ public class DetailAlatDialog extends javax.swing.JDialog {
             }
 
             String jenis = cmbJenisAlat.getSelectedItem().toString();
-
             LokasiModel selectedLokasi = (LokasiModel) cmbLokasi.getSelectedItem();
-            int idLokasi = selectedLokasi.getIdLokasi();
-            
+                int idLokasi = selectedLokasi.getIdLokasi();
+
+            // BUAT MODEL
             AlatModel alat = new AlatModel(
-                alatEdit != null ? alatEdit.getIdAlat() : 0,
-                txtKode.getText(),
-                txtNama.getText(),
-                jenis, 
-                tglBeli,
-                idLokasi
-            );
+                        0,
+                        txtKode.getText(),
+                        txtNama.getText(),
+                        jenis, 
+                        tglBeli,
+                        idLokasi
+                    );
 
-            boolean sukses;
-
-            if (alatEdit == null) {
-                sukses = controller.insertAlat(alat);
-            } else {
-                sukses = controller.updateAlat(alat);
-            }
+            // CONTROLLER
+            AlatController controller = new AlatController();
+            boolean sukses = controller.insertAlat(alat);
 
             if (sukses) {
-                JOptionPane.showMessageDialog(this, "Berhasil disimpan!");
+                JOptionPane.showMessageDialog(this, "Alat berhasil ditambahkan!");
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Gagal!");
+                JOptionPane.showMessageDialog(this, "Gagal simpan data!");
             }
 
         } catch (Exception e) {
@@ -435,34 +400,6 @@ public class DetailAlatDialog extends javax.swing.JDialog {
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaActionPerformed
-
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        // TODO add your handling code here:
-        if (alatEdit == null) {
-            JOptionPane.showMessageDialog(this, "Data belum dipilih!");
-            return;
-        }
-
-        int confirm = JOptionPane.showConfirmDialog(
-                this,
-                "Yakin mau hapus data ini?",
-                "Konfirmasi",
-                JOptionPane.YES_NO_OPTION
-        );
-        
-
-        if (confirm != JOptionPane.YES_OPTION) return;
-        
-        boolean sukses = controller.deleteAlat(alatEdit.getIdAlat());
-
-        if (sukses) {
-            JOptionPane.showMessageDialog(this, "Berhasil dihapus!");
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Gagal hapus!");
-        }
-        
-    }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -489,7 +426,7 @@ public class DetailAlatDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                DetailAlatDialog dialog = new DetailAlatDialog(new javax.swing.JFrame(), true);
+                TambahAlat dialog = new TambahAlat(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -503,7 +440,6 @@ public class DetailAlatDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
-    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox<String> cmbJenisAlat;
     private javax.swing.JComboBox<String> cmbJenisAlat1;

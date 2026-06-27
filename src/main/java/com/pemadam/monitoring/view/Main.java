@@ -5,7 +5,7 @@
 package com.pemadam.monitoring.view;
 
 import com.pemadam.monitoring.config.Session;
-import com.pemadam.monitoring.view.alat.Alat3;
+import com.pemadam.monitoring.view.alat.DaftarAlat;
 //import com.pemadam.monitoring.view.Alat.Alat;
 //import com.pemadam.monitoring.view.alat.Alat;
 import com.pemadam.monitoring.view.dashboard.Dashboard;
@@ -436,7 +436,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         panelUtama.removeAll();
-        panelUtama.add(new Alat3());
+        panelUtama.add(new DaftarAlat());
         panelUtama.repaint();
         panelUtama.revalidate();
     }//GEN-LAST:event_jLabel2MouseClicked

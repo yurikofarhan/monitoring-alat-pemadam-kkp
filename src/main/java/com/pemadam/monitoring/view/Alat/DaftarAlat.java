@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Yuriko
  */
-public class Alat3 extends javax.swing.JPanel {
+public class DaftarAlat extends javax.swing.JPanel {
 
     /**
      * Creates new form Alat
@@ -25,7 +25,7 @@ public class Alat3 extends javax.swing.JPanel {
     private AlatController controller =  new AlatController();
     java.awt.Frame parent = (java.awt.Frame)
     javax.swing.SwingUtilities.getWindowAncestor(this);
-    public Alat3() {
+    public DaftarAlat() {
         initComponents();
         tblAlat.setModel(new DefaultTableModel(
                 new Object[][]{},
@@ -214,8 +214,8 @@ public class Alat3 extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         
-        TambahAlatDialog dialog =
-        new TambahAlatDialog(parent, true);
+        TambahAlat dialog =
+        new TambahAlat(parent, true);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
         loadData();
@@ -275,7 +275,7 @@ public class Alat3 extends javax.swing.JPanel {
             return;
         }
         AlatModel a = controller.getAlatById(selectedId);
-        DetailAlatDialog dialog = new DetailAlatDialog(parent, true);
+        DetailAlat dialog = new DetailAlat(parent, true);
 
         dialog.setData(
             a.getIdAlat(),
