@@ -13,6 +13,7 @@ import java.util.List;
  * @author Yuriko
  */
 public class LogAktivitasController {
+
     private LogAktivitasDAO dao = new LogAktivitasDAO();
 
     public List<LogAktivitasModel> getLog() {

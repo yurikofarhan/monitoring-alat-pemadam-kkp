@@ -20,50 +20,41 @@ public class LogAktivitas extends javax.swing.JPanel {
     /**
      * Creates new form LogAktivitas
      */
-    
-    
-    java.awt.Frame parent = (java.awt.Frame)
-    javax.swing.SwingUtilities.getWindowAncestor(this);
+    java.awt.Frame parent = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+
     public LogAktivitas() {
         initComponents();
         tblLog.setModel(new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                "ID","ID Pengguna", "Waktu", "Aksi", "Tabel Terkait", "Record id", "Deskripsi"
-            }
+                    "ID", "ID Pengguna", "Waktu", "Aksi", "Tabel Terkait", "Record id", "Deskripsi"
+                }
         ));
-        
+
 //        tblLog.getColumnModel().getColumn(0).setMinWidth(0);
 //        tblLog.getColumnModel().getColumn(0).setMaxWidth(0);
 //        tblLog.getColumnModel().getColumn(0).setWidth(0);
-
         tblLog.setRowHeight(25);
-        tblLog.getColumnModel().getColumn(0).setPreferredWidth(10);  
-        tblLog.getColumnModel().getColumn(1).setPreferredWidth(20); 
-        tblLog.getColumnModel().getColumn(2).setPreferredWidth(100); 
-        tblLog.getColumnModel().getColumn(3).setPreferredWidth(50); 
-        tblLog.getColumnModel().getColumn(4).setPreferredWidth(50); 
-        tblLog.getColumnModel().getColumn(5).setPreferredWidth(50); 
-        tblLog.getColumnModel().getColumn(6).setPreferredWidth(200); 
+        tblLog.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblLog.getColumnModel().getColumn(1).setPreferredWidth(20);
+        tblLog.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tblLog.getColumnModel().getColumn(3).setPreferredWidth(50);
+        tblLog.getColumnModel().getColumn(4).setPreferredWidth(50);
+        tblLog.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tblLog.getColumnModel().getColumn(6).setPreferredWidth(200);
 
-        
-        
         DefaultTableCellRenderer center = new DefaultTableCellRenderer();
         center.setHorizontalAlignment(JLabel.CENTER);
-        
-        tblLog.getColumnModel().getColumn(0).setCellRenderer(center); 
-        tblLog.getColumnModel().getColumn(1).setCellRenderer(center); 
-        tblLog.getColumnModel().getColumn(3).setCellRenderer(center); 
-        tblLog.getColumnModel().getColumn(4).setCellRenderer(center);
-        tblLog.getColumnModel().getColumn(5).setCellRenderer(center); 
 
-        
-        
-        loadData();   
+        tblLog.getColumnModel().getColumn(0).setCellRenderer(center);
+        tblLog.getColumnModel().getColumn(1).setCellRenderer(center);
+        tblLog.getColumnModel().getColumn(3).setCellRenderer(center);
+        tblLog.getColumnModel().getColumn(4).setCellRenderer(center);
+        tblLog.getColumnModel().getColumn(5).setCellRenderer(center);
+
+        loadData();
     }
 
-    
-    
     private void loadData() {
 
         DefaultTableModel model = (DefaultTableModel) tblLog.getModel();
@@ -76,18 +67,17 @@ public class LogAktivitas extends javax.swing.JPanel {
 
         for (LogAktivitasModel a : list) {
             model.addRow(new Object[]{
-        a.getIdLog(),             
-        a.getIdPengguna(),
-        a.getWaktu(),
-        a.getAksi(),  
-        a.getTabelTerkait(),
-        a.getRecordId(),
-        a.getDeskripsi()
+                a.getIdLog(),
+                a.getIdPengguna(),
+                a.getWaktu(),
+                a.getAksi(),
+                a.getTabelTerkait(),
+                a.getRecordId(),
+                a.getDeskripsi()
             });
         }
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,8 +87,9 @@ public class LogAktivitas extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLog = new javax.swing.JTable();
 
@@ -106,8 +97,31 @@ public class LogAktivitas extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1020, 570));
         setLayout(new java.awt.BorderLayout());
 
+        jPanel2.setBackground(new java.awt.Color(232, 31, 71));
+
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
-        jLabel2.setText("Form Log Aktivitas");
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/file2.png"))); // NOI18N
+        jLabel2.setText("Log Aktivitas");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel2)
+                .addContainerGap(734, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
         tblLog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,38 +149,34 @@ public class LogAktivitas extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jLabel2)
-                .addGap(62, 593, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLogMouseClicked
-       
+
     }//GEN-LAST:event_tblLogMouseClicked
 
     private void tblLogMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLogMousePressed
-        
+
     }//GEN-LAST:event_tblLogMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblLog;
     // End of variables declaration//GEN-END:variables

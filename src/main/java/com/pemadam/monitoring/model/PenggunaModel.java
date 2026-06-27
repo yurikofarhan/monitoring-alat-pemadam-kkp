@@ -4,21 +4,24 @@
  */
 package com.pemadam.monitoring.model;
 
-
 /**
  *
  * @author Yuriko
  */
 public class PenggunaModel {
+
+
     private int idPengguna;
     private String namaPengguna;
     private String username;
     private String password;
     private String noTelp;
     private String role;
+    
+    public PenggunaModel(){}
 
     public PenggunaModel(int idPengguna, String namaPengguna,
-                    String username, String password, String noTelp, String role) {
+            String username, String password, String noTelp, String role) {
         this.idPengguna = idPengguna;
         this.namaPengguna = namaPengguna;
         this.username = username;
@@ -27,10 +30,54 @@ public class PenggunaModel {
         this.role = role;
     }
 
-    public int getIdPengguna() { return idPengguna; }
-    public String getNamaPengguna() { return namaPengguna; }
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
-    public String getNoTelp() { return noTelp; }
-    public String getRole() { return role; }
+    public int getIdPengguna() {
+        return idPengguna;
+    }
+
+    public String getNamaPengguna() {
+        return namaPengguna;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getNoTelp() {
+        return noTelp;
+    }
+
+    public String getRole() {
+        return role;
+    }
+    
+    
+    
+    public void setIdPengguna(int idPengguna) {
+        this.idPengguna = idPengguna;
+    }
+
+    public void setNamaPengguna(String namaPengguna) {
+        this.namaPengguna = namaPengguna;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setNoTelp(String noTelp) {
+        this.noTelp = noTelp;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
 }

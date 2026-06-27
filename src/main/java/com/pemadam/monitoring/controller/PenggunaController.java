@@ -4,7 +4,6 @@
  */
 package com.pemadam.monitoring.controller;
 
-
 /**
  *
  * @author Yuriko
@@ -22,21 +21,24 @@ public class PenggunaController {
     public List<PenggunaModel> getAllPengguna() {
         return dao.getAll();
     }
+
     public boolean insertPengguna(PenggunaModel p) {
+        
         int id = dao.insert(p);
-            
-            if (id > 0) {
-                LogAktivitasDAO.simpan(
-                        Session.getUser().getIdPengguna(),
-                        "INSERT",
-                        "pengguna",
-                        id,
-                        "Menambah data Pengguna " + id
-                );
-                return true;
-            }
+
+        if (id > 0) {
+            LogAktivitasDAO.simpan(
+                    Session.getUser().getIdPengguna(),
+                    "INSERT",
+                    "pengguna",
+                    id,
+                    "Menambah data Pengguna id: " + id
+            );
+            return true;
+        }
         return false;
     }
+
     public boolean updatePengguna(PenggunaModel p) {
         boolean berhasil = dao.update(p);
         if (berhasil) {
@@ -46,15 +48,17 @@ public class PenggunaController {
                     "UPDATE",
                     "pengguna",
                     p.getIdPengguna(),
-                    "Mengubah data Pengguna " + p.getIdPengguna()
+                    "Mengubah data Pengguna id: " + p.getIdPengguna()
             );
         }
 
         return berhasil;
     }
+
     public PenggunaModel getPenggunaById(int id) {
         return dao.getById(id);
     }
+
     public boolean deletePengguna(int id) {
         PenggunaModel alat = getPenggunaById(id);
         boolean berhasil = dao.delete(id);
@@ -65,10 +69,10 @@ public class PenggunaController {
                     "DELETE",
                     "pengguna",
                     alat.getIdPengguna(),
-                    "Menghapus data Pengguna " + alat.getIdPengguna()
+                    "Menghapus data Pengguna id: " + alat.getIdPengguna()
             );
         }
-        
+
         return berhasil;
     }
 

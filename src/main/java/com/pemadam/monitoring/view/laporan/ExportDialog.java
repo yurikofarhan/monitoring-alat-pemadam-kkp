@@ -17,6 +17,9 @@ public class ExportDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    
+    
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -61,7 +64,6 @@ public class ExportDialog extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laporan/img/Multiply.png"))); // NOI18N
         jButton2.setBorder(null);
@@ -113,7 +115,7 @@ public class ExportDialog extends javax.swing.JDialog {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

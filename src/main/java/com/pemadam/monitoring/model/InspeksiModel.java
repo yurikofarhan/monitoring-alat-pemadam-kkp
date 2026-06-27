@@ -13,17 +13,21 @@ import java.sql.Timestamp;
 public class InspeksiModel {
 
     private int idInspeksi;
-    private Timestamp tanggalInspeksi; 
+    private Timestamp tanggalInspeksi;
     private String kondisi;
     private String status;            // status alat
-    private String statusInspeksi;    
+    private String statusInspeksi;
     private String keterangan;
-    private int idPengguna;           
+    private int idPengguna;
     private int idAlat;
-    
+    private String kodeAlat;
     private String namaAlat;
+    private String jenisAlat;
+    private Timestamp tglPembelian;
+    private String namaLokasi;
+
     private String namaPengguna;
-    
+
     public String getNamaAlat() {
         return namaAlat;
     }
@@ -103,13 +107,37 @@ public class InspeksiModel {
     public void setIdAlat(int idAlat) {
         this.idAlat = idAlat;
     }
-    
+
     @Override
     public String toString() {
         String tgl = (tanggalInspeksi != null)
-            ? new java.text.SimpleDateFormat("dd-MM-yyyy").format(tanggalInspeksi)
-            : "-";
+                ? new java.text.SimpleDateFormat("dd-MM-yyyy").format(tanggalInspeksi)
+                : "-";
 
         return tgl + " | " + kondisi;
+    }
+
+    public void setKodeAlat(String kodeAlat) {
+        this.kodeAlat = kodeAlat;
+    }
+
+    public String getKodeAlat() {
+        return kodeAlat;
+    }
+
+    public String getJenisAlat() {
+        return jenisAlat;
+    }
+
+    public String getKondisiTerakhir() {
+        return kondisi;
+    }
+
+    public String getStatusTerakhir() {
+        return status;
+    }
+
+    public String getNamaLokasi() {
+        return namaLokasi;
     }
 }

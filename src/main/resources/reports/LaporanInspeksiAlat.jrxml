@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Laporan_Inspeksi_Alat" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+    <property name="ireport.zoom" value="1.25"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <queryString language="SQL">
+		<![CDATA[
+			SELECT 
+				i.id_inspeksi,
+				a.kode_alat,
+				a.nama_alat,
+				i.tanggal_inspeksi,
+				i.kondisi,
+				i.status AS status_alat,
+				i.status_inspeksi,
+				p.nama_pengguna
+			FROM inspeksi_alat i
+			JOIN alat a ON i.id_alat = a.id_alat
+			LEFT JOIN pengguna p ON i.id_pengguna = p.id_pengguna
+			ORDER BY i.tanggal_inspeksi DESC
+		]]>
+    </queryString>
+	
+    <field name="id_inspeksi" class="java.lang.Integer"/>
+    <field name="kode_alat" class="java.lang.String"/>
+    <field name="nama_alat" class="java.lang.String"/>
+    <field name="tanggal_inspeksi" class="java.sql.Timestamp"/>
+    <field name="kondisi" class="java.lang.String"/>
+    <field name="status_alat" class="java.lang.String"/>
+    <field name="status_inspeksi" class="java.lang.String"/>
+    <field name="nama_pengguna" class="java.lang.String"/>
+
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="65" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="10" width="555" height="28"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[LAPORAN INSPEKSI ALAT]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="52" width="555" height="1"/>
+                <graphicElement>
+                    <pen lineWidth="1.5" lineStyle="Solid"/>
+                </graphicElement>
+            </line>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="10" splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="25" splitType="Stretch">
+            <rectangle>
+                <reportElement x="0" y="0" width="555" height="25" backcolor="#EFEFEF"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement x="0" y="0" width="25" height="25"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[No]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="25" y="0" width="55" height="25"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Kode]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="80" y="0" width="105" height="25"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Nama Alat]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="185" y="0" width="85" height="25"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Tgl Inspeksi]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="270" y="0" width="65" height="25"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Kondisi]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="335" y="0" width="70" height="25"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Status Alat]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="405" y="0" width="75" height="25"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Status Inspeksi]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="480" y="0" width="75" height="25"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Petugas]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="22" splitType="Stretch">
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement x="0" y="0" width="25" height="22"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement x="25" y="0" width="55" height="22"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{kode_alat}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement x="80" y="0" width="105" height="22"/>
+                <box leftPadding="4">
+                    <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nama_alat}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" pattern="dd-MM-yyyy HH:mm" isBlankWhenNull="true">
+                <reportElement x="185" y="0" width="85" height="22"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{tanggal_inspeksi}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement x="270" y="0" width="65" height="22"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{kondisi} == null ? "-" : $F{kondisi}.replace('_', ' ').capitalize()]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement x="335" y="0" width="70" height="22"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{status_alat} == null ? "-" : $F{status_alat}.replace('_', ' ').capitalize()]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement x="405" y="0" width="75" height="22"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{status_inspeksi} == null ? "-" : $F{status_inspeksi}.replace('_', ' ').capitalize()]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                <reportElement x="480" y="0" width="75" height="22"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#CCCCCC"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nama_pengguna} == null ? "-" : $F{nama_pengguna}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="15" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="25" splitType="Stretch">
+            <textField>
+                <reportElement x="435" y="5" width="80" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Halaman "+$V{PAGE_NUMBER}+" dari"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="515" y="5" width="40" height="20"/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>

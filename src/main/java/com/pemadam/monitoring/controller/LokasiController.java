@@ -22,21 +22,23 @@ public class LokasiController {
     public List<LokasiModel> getAll() {
         return dao.getAll();
     }
+
     public boolean insertLokasi(LokasiModel l) {
         int id = dao.insert(l);
-            
-            if (id > 0) {
-                LogAktivitasDAO.simpan(
-                        Session.getUser().getIdPengguna(),
-                        "INSERT",
-                        "lokasi",
-                        id,
-                        "Menambah data Lokasi " + id
-                );
-                return true;
-            }
+
+        if (id > 0) {
+            LogAktivitasDAO.simpan(
+                    Session.getUser().getIdPengguna(),
+                    "INSERT",
+                    "lokasi",
+                    id,
+                    "Menambah data Lokasi " + id
+            );
+            return true;
+        }
         return false;
     }
+
     public boolean updateLokasi(LokasiModel l) {
         boolean berhasil = dao.update(l);
         if (berhasil) {
@@ -52,9 +54,11 @@ public class LokasiController {
 
         return berhasil;
     }
+
     public LokasiModel getLokasiById(int id) {
         return dao.getById(id);
     }
+
     public boolean deleteLokasi(int id) {
         LokasiModel alat = getLokasiById(id);
         boolean berhasil = dao.delete(id);
@@ -68,7 +72,7 @@ public class LokasiController {
                     "Menghapus data Lokasi " + alat.getIdLokasi()
             );
         }
-        
+
         return berhasil;
     }
 }

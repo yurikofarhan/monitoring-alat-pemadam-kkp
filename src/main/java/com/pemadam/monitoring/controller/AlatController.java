@@ -15,6 +15,7 @@ import java.util.List;
  * @author Yuriko
  */
 public class AlatController {
+
     private final AlatDAO dao = new AlatDAO();
 
     public List<AlatModel> getAllAlat() {
@@ -28,9 +29,8 @@ public class AlatController {
                 throw new IllegalArgumentException("Kode alat wajib diisi");
             }
 
-
             int id = dao.insert(alat);
-            
+
             if (id > 0) {
                 LogAktivitasDAO.simpan(
                         Session.getUser().getIdPengguna(),
@@ -82,9 +82,9 @@ public class AlatController {
                     "Menghapus data Alat " + alat.getKodeAlat()
             );
         }
-        
+
         return berhasil;
 
     }
-    
+
 }

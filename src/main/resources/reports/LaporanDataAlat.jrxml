@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Laporan_Data_Alat" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77ee2248-82c7-4d7f-994b-3eecbbb36475">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Laporan_Data_Alat" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7bd22e69-9f46-43cd-98ad-144e624bd800">
 	<property name="ireport.zoom" value="1.25"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -9,46 +9,41 @@
 				a.kode_alat,
 				a.nama_alat,
 				a.jenis_alat,
-				a.tanggal_pembelian,
 				l.nama_lokasi,
 				l.lantai,
-				l.gedung,
-				i.tanggal_inspeksi AS tanggal_inspeksi_terakhir,
-				p.nama_pengguna AS nama_petugas_terakhir
+				i.kondisi AS kondisi_terakhir,
+				i.status AS status_terakhir
 			FROM alat a
 			LEFT JOIN lokasi_alat l ON a.id_lokasi = l.id_lokasi
 			LEFT JOIN (
-				SELECT id_alat, tanggal_inspeksi, id_pengguna,
+				SELECT id_alat, kondisi, status,
 				       ROW_NUMBER() OVER (PARTITION BY id_alat ORDER BY tanggal_inspeksi DESC) as rn
 				FROM inspeksi_alat
 			) i ON a.id_alat = i.id_alat AND i.rn = 1
-			LEFT JOIN pengguna p ON i.id_pengguna = p.id_pengguna
 			ORDER BY a.kode_alat ASC]]>
 	</queryString>
 	<field name="id_alat" class="java.lang.Integer"/>
 	<field name="kode_alat" class="java.lang.String"/>
 	<field name="nama_alat" class="java.lang.String"/>
 	<field name="jenis_alat" class="java.lang.String"/>
-	<field name="tanggal_pembelian" class="java.sql.Timestamp"/>
 	<field name="nama_lokasi" class="java.lang.String"/>
 	<field name="lantai" class="java.lang.String"/>
-	<field name="gedung" class="java.lang.String"/>
-	<field name="tanggal_inspeksi_terakhir" class="java.sql.Timestamp"/>
-	<field name="nama_petugas_terakhir" class="java.lang.String"/>
+	<field name="kondisi_terakhir" class="java.lang.String"/>
+	<field name="status_terakhir" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="65" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="10" width="555" height="28" uuid="e3b0c442-98fc-11eb-a8b3-0242ac130003"/>
+				<reportElement x="0" y="10" width="555" height="28" uuid="a4b19e7b-2d1f-4dc0-87fe-c460a19766c1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[LAPORAN MASTER DATA ALAT]]></text>
+				<text><![CDATA[LAPORAN DATA ALAT PEMADAM KEBAKARAN]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="52" width="555" height="1" uuid="8d646b96-98fc-11eb-a8b3-0242ac130003"/>
+				<reportElement x="0" y="52" width="555" height="1" uuid="7dc8b3f1-ca33-45b2-98dc-8ca81aac73ea"/>
 				<graphicElement>
 					<pen lineWidth="1.5" lineStyle="Solid"/>
 				</graphicElement>
@@ -61,69 +56,86 @@
 	<columnHeader>
 		<band height="25" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="555" height="25" backcolor="#EFEFEF" uuid="ba757040-98fc-11eb-a8b3-0242ac130003"/>
+				<reportElement x="0" y="0" width="555" height="25" backcolor="#EFEFEF" uuid="eab2a3b2-6ae0-42ff-968b-8edc6fc2348d"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="0" width="75" height="25" uuid="1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d"/>
+				<reportElement x="0" y="0" width="35" height="25" uuid="19a346ce-69fd-40ab-82b6-5dd06dbaa4bd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Kode Alat]]></text>
+				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="75" y="0" width="100" height="25" uuid="2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c7d"/>
+				<reportElement x="35" y="0" width="65" height="25" uuid="8948cacf-12af-4ddc-a5f0-ba3dc40420a1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="120" height="25" uuid="fd36a44c-f012-4d71-8d23-b09b32b82f23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nama Alat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="175" y="0" width="90" height="25" uuid="7a8b9c0d-6e7f-8a9b-0c1d-2e3f4a5b6c7d"/>
+				<reportElement x="220" y="0" width="110" height="25" uuid="fdbf9c0d-0f4e-4bb6-b18f-60f776a53d3a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Jenis Alat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="265" y="0" width="110" height="25" uuid="3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"/>
+				<reportElement x="330" y="0" width="80" height="25" uuid="694d2fbd-a83f-44ed-ba3c-b6ebea5710a9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Lokasi Penempatan]]></text>
+				<text><![CDATA[Kondisi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="375" y="0" width="95" height="25" uuid="4a5b6c7d-8e9f-0a1b-2c3d-4e5f6a7b8c9d"/>
+				<reportElement x="410" y="0" width="80" height="25" uuid="4c3226e1-7719-44d0-bb4b-2e9542321621"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Inspeksi Terakhir]]></text>
+				<text><![CDATA[Status Alat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="470" y="0" width="85" height="25" uuid="6a7b8c9d-0e1f-2a3b-4c5d-6e7f8a9b0c1d"/>
+				<reportElement x="490" y="0" width="65" height="25" uuid="2cbdf23b-9253-4391-b237-40e31cbe1d7d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Oleh Petugas]]></text>
+				<text><![CDATA[Lokasi]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="22" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="75" height="22" uuid="7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d"/>
-				<box leftPadding="4">
+				<reportElement x="0" y="0" width="35" height="22" uuid="03fae8c7-3eac-4f14-9358-38c735ced299"/>
+				<box>
 					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="35" y="0" width="65" height="22" uuid="8824b7dd-557c-431b-a830-a3d1f151ff81"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kode_alat}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="75" y="0" width="100" height="22" uuid="8a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d"/>
+				<reportElement x="100" y="0" width="120" height="22" uuid="3d945a2a-c168-422e-ad69-043c93e7f7f0"/>
 				<box leftPadding="4">
 					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
 				</box>
@@ -133,7 +145,7 @@
 				<textFieldExpression><![CDATA[$F{nama_alat}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="175" y="0" width="90" height="22" uuid="9a8b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d"/>
+				<reportElement x="220" y="0" width="110" height="22" uuid="104faa70-3079-45a2-8da1-c871d72182fe"/>
 				<box leftPadding="4">
 					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
 				</box>
@@ -143,34 +155,34 @@
 				<textFieldExpression><![CDATA[$F{jenis_alat}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="265" y="0" width="110" height="22" uuid="9a0b1c2d-3e4f-5a6b-7c8d-8e9f0a1b2c3d"/>
-				<box leftPadding="4">
-					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
-				</box>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nama_lokasi} != null ? $F{nama_lokasi} + " (Lt." + $F{lantai} + ")" : "-"]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="true">
-				<reportElement x="375" y="0" width="95" height="22" uuid="0b1c2d3e-4f5a-6b7c-8d8e-9f0a1b2c3d4e"/>
+				<reportElement x="330" y="0" width="80" height="22" uuid="e32d6a2b-7bc4-4244-9794-2d7c25789dee"/>
 				<box>
 					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tanggal_inspeksi_terakhir}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{kondisi_terakhir} == null ? "Belum Dicek" : $F{kondisi_terakhir}.replace('_', ' ').capitalize()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="470" y="0" width="85" height="22" uuid="2c3d4e5f-6a7b-8c9d-0e1f-2a3b4c5d6e7f"/>
+				<reportElement x="410" y="0" width="80" height="22" uuid="21c619b5-67ff-4b1e-96dd-c25b60601e5a"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status_terakhir} == null ? "-" : $F{status_terakhir}.replace('_', ' ').capitalize()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="490" y="0" width="65" height="22" uuid="2b458c25-2b29-4435-b4bf-46af80d0e9e1"/>
 				<box leftPadding="4">
 					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nama_petugas_terakhir} == null ? "-" : $F{nama_petugas_terakhir}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nama_lokasi} == null ? "-" : $F{nama_lokasi}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -180,12 +192,12 @@
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<textField>
-				<reportElement x="435" y="5" width="80" height="20" uuid="3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f"/>
+				<reportElement x="435" y="5" width="80" height="20" uuid="ecbd1d01-f2f9-40f8-b7b9-0038ceeb1cd3"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Halaman "+$V{PAGE_NUMBER}+" dari"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="515" y="5" width="40" height="20" uuid="4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a"/>
+				<reportElement x="515" y="5" width="40" height="20" uuid="68bfb19f-cf66-4c5d-b998-634eb534f029"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>

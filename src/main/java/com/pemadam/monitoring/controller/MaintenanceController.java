@@ -4,13 +4,14 @@
  */
 package com.pemadam.monitoring.controller;
 
+import com.pemadam.monitoring.config.Session;
 import com.pemadam.monitoring.dao.AlatDAO;
 import com.pemadam.monitoring.dao.InspeksiDAO;
+import com.pemadam.monitoring.dao.LogAktivitasDAO;
 import com.pemadam.monitoring.dao.MaintenanceDAO;
 import com.pemadam.monitoring.model.AlatModel;
 import com.pemadam.monitoring.model.InspeksiModel;
 import com.pemadam.monitoring.model.MaintenanceModel;
-import com.pemadam.monitoring.view.maintenance.Maintenance;
 import com.pemadam.monitoring.view.maintenance.Maintenance;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.sql.Timestamp;
  * @author Yuriko
  */
 public class MaintenanceController {
+
     private final Maintenance view;
     private final AlatDAO alatDAO;
     private final InspeksiDAO inspeksiDAO;
@@ -43,17 +45,17 @@ public class MaintenanceController {
     public void pilihAlat(int idAlat) {
         List<InspeksiModel> list = inspeksiDAO.getByAlat(idAlat);
         AlatModel alat = alatDAO.getById(idAlat);
-        
+
         if (alat != null) {
             view.showDetailAlat(alat);
         }
         view.setComboInspeksi(list);
     }
-    
+
     public void pilihInspeksi(int idInspeksi) {
 
-        List<MaintenanceModel> list =
-            maintenanceDAO.getByInspeksi(idInspeksi);
+        List<MaintenanceModel> list
+                = maintenanceDAO.getByInspeksi(idInspeksi);
 
         view.showTable(list);
     }
@@ -62,34 +64,45 @@ public class MaintenanceController {
         MaintenanceDAO dao = new MaintenanceDAO();
         return dao.getByInspeksi(idInspeksi);
     }
-    
-    public boolean tambah( MaintenanceModel m) {
 
-        if (m.getTanggalMulai() == null || m.getTanggalSelesai()== null ||
-                m.getStatus() == null || m.getStatus().isEmpty()) {
+    public boolean tambah(MaintenanceModel m) {
+
+        if (m.getTanggalMulai() == null || m.getTanggalSelesai() == null
+                || m.getStatus() == null || m.getStatus().isEmpty()) {
             return false;
         }
 
         try {
-            
-            maintenanceDAO.insert(m);
-            return true;
+
+            int id = maintenanceDAO.insert(m);
+
+            if (id > 0) {
+                LogAktivitasDAO.simpan(
+                        Session.getUser().getIdPengguna(),
+                        "INSERT",
+                        "Maintenance",
+                        id,
+                        "Menamabah data Maintenance pada Id Alat : " + m.getIdAlat()
+                );
+                return true;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+        return false;
     }
-    
+
     public MaintenanceModel getById(int id) {
         return maintenanceDAO.getById(id);
     }
-    
+
     public boolean update(int idMaintenance, Date tgl_mulai, Date tgl_selesai, String buktiImage,
             String status, String ket) {
 
-        if (tgl_mulai == null || tgl_selesai == null ||
-            status == null || status.trim().isEmpty()) {
+        if (tgl_mulai == null || tgl_selesai == null
+                || status == null || status.trim().isEmpty()) {
             return false;
         }
 
@@ -103,6 +116,15 @@ public class MaintenanceController {
             m.setKeterangan(ket);
 
             maintenanceDAO.update(m);
+            if (idMaintenance > 0) {
+                LogAktivitasDAO.simpan(
+                        Session.getUser().getIdPengguna(),
+                        "UPDATE",
+                        "Maintenance",
+                        idMaintenance,
+                        "Mengubah data Maintenance pada Id Alat: " + m.getIdAlat()
+                );
+            }
             return true;
 
         } catch (Exception e) {

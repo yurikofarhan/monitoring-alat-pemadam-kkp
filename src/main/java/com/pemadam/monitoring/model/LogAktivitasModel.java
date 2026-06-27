@@ -20,9 +20,12 @@ public class LogAktivitasModel {
     private Integer recordId;
     private String deskripsi;
 
-     public LogAktivitasModel() {
+    private String role;
+    private String namaPengguna;
+
+    public LogAktivitasModel() {
     }
-    
+
     public void setIdLog(int idLog) {
         this.idLog = idLog;
     }
@@ -79,7 +82,20 @@ public class LogAktivitasModel {
         return deskripsi;
     }
 
-   
+    public String getRole() {
+        return role;
+    }
 
-    
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getNamaPengguna() {
+        return namaPengguna;
+    }
+
+    public void setNamaPengguna(String namaPengguna) {
+        this.namaPengguna = namaPengguna;
+    }
+
 }

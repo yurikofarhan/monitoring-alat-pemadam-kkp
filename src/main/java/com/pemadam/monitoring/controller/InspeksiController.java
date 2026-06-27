@@ -30,34 +30,29 @@ public class InspeksiController {
         this.inspeksiDAO = new InspeksiDAO();
     }
 
-    // Load data ke combobox
     public void loadCombo() {
         List<AlatModel> list = alatDAO.getAll();
         view.setComboAlat(list);
     }
 
-    // Saat pilih alat
     public void pilihAlat(int idAlat) {
 
-        // ambil detail alat
         AlatModel alat = alatDAO.getById(idAlat);
         if (alat != null) {
             view.showDetailAlat(alat);
         }
 
-        // ambil data inspeksi
         List<InspeksiModel> list = inspeksiDAO.getByAlat(idAlat);
         view.showTable(list);
     }
 
-    
     public boolean tambah(int idAlat, Date tanggal,
-                          String kondisi, String status, 
-                          String statusInspeksi, String ket) {
+            String kondisi, String status,
+            String statusInspeksi, String ket) {
 
-        if (tanggal == null ||
-            kondisi == null || kondisi.isEmpty() ||
-            statusInspeksi == null || statusInspeksi.isEmpty()) {
+        if (tanggal == null
+                || kondisi == null || kondisi.isEmpty()
+                || statusInspeksi == null || statusInspeksi.isEmpty()) {
             return false;
         }
 
@@ -70,20 +65,18 @@ public class InspeksiController {
             i.setKeterangan(ket);
             i.setTanggalInspeksi(new java.sql.Timestamp(tanggal.getTime()));
 
-            
             int idInspeksi = inspeksiDAO.insert(i);
-            
+
             if (idInspeksi > 0) {
                 LogAktivitasDAO.simpan(
                         Session.getUser().getIdPengguna(),
                         "INSERT",
                         "inspeksi",
                         idInspeksi,
-                        "Menambah data Inspeksi pada Id Alat " + i.getIdAlat()
+                        "Menambah data Inspeksi pada Id Alat: " + i.getIdAlat()
                 );
                 return true;
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,19 +84,18 @@ public class InspeksiController {
         }
         return false;
     }
-    
+
     public InspeksiModel getById(int id) {
         return inspeksiDAO.getById(id);
     }
-    
-    public boolean update(int idInspeksi, int idAlat, Date tanggal,
-                          String kondisi, String status,
-                          String statusInspeksi, String ket) {
 
-        // validasi
-        if (tanggal == null ||
-            kondisi == null || kondisi.trim().isEmpty() ||
-            statusInspeksi == null || statusInspeksi.trim().isEmpty()) {
+    public boolean update(int idInspeksi, int idAlat, Date tanggal,
+            String kondisi, String status,
+            String statusInspeksi, String ket) {
+
+        if (tanggal == null
+                || kondisi == null || kondisi.trim().isEmpty()
+                || statusInspeksi == null || statusInspeksi.trim().isEmpty()) {
             return false;
         }
 
@@ -118,13 +110,22 @@ public class InspeksiController {
             i.setTanggalInspeksi(new java.sql.Timestamp(tanggal.getTime()));
 
             inspeksiDAO.update(i);
-            return true;
+            if (idInspeksi > 0) {
+                LogAktivitasDAO.simpan(
+                        Session.getUser().getIdPengguna(),
+                        "UPDATE",
+                        "inspeksi",
+                        idInspeksi,
+                        "Mengubah data Inspeksi pada Id Alat: " + i.getIdAlat()
+                );
+                return true;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+        return false;
     }
 
-    
 }

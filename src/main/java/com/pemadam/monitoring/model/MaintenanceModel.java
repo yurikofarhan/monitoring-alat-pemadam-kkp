@@ -11,17 +11,19 @@ import java.sql.Timestamp;
  * @author Yuriko
  */
 public class MaintenanceModel {
+
     private int idMaintenance;
-    private Timestamp tanggalMulai; 
-    private Timestamp tanggalSelesai; 
+    private Timestamp tanggalMulai;
+    private Timestamp tanggalSelesai;
     private String buktiImage;
-    private String status;            
+    private String status;
     private String keterangan;
     private int idAlat;
     private int idInspeksi;
-    private int idPengguna;   
+    private int idPengguna;
     private String namaPengguna;
     private String namaAlat;
+    private String kodeAlat;
 
     public String getNamaAlat() {
         return namaAlat;
@@ -103,7 +105,7 @@ public class MaintenanceModel {
     public void setIdPengguna(int idPengguna) {
         this.idPengguna = idPengguna;
     }
-    
+
     public String getNamaPengguna() {
         return namaPengguna;
     }
@@ -111,6 +113,13 @@ public class MaintenanceModel {
     public void setNamaPengguna(String namaPengguna) {
         this.namaPengguna = namaPengguna;
     }
-    
+
+    public String getKodeAlat() {
+        return kodeAlat;
+    }
+
+    public void setKodeAlat(String kodeAlat) {
+        this.kodeAlat = kodeAlat;
+    }
 
 }

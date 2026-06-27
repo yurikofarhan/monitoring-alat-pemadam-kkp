@@ -12,6 +12,9 @@ import com.pemadam.monitoring.model.LokasiModel;
 import com.pemadam.monitoring.model.MaintenanceModel;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,9 +26,11 @@ public class Maintenance extends javax.swing.JPanel {
     /**
      * Creates new form Maintenance
      */
+    private int selectedId;
     private MaintenanceController controller;
     private List<AlatModel> alatList;
     private List<InspeksiModel> inspeksiList;
+    java.awt.Frame parent = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
 
     public Maintenance() {
         initComponents();
@@ -36,12 +41,12 @@ public class Maintenance extends javax.swing.JPanel {
                 new Object[][]{},
                 new String[]{
                     "ID",
+                    "No",
                     "Tanggal Mulai",
                     "Tanggal Selesai",
                     "Status",
                     "Keterangan",
-                    "Nama Petugas",
-                    "Aksi"
+                    "Nama Petugas"
                 }
         ));
 
@@ -49,6 +54,27 @@ public class Maintenance extends javax.swing.JPanel {
         tblMaintenance.getColumnModel().getColumn(0).setMinWidth(0);
         tblMaintenance.getColumnModel().getColumn(0).setMaxWidth(0);
         tblMaintenance.getColumnModel().getColumn(0).setWidth(0);
+        
+        tblMaintenance.setRowHeight(25);
+        tblMaintenance.getColumnModel().getColumn(1).setPreferredWidth(10);  // No
+        tblMaintenance.getColumnModel().getColumn(2).setPreferredWidth(150); // Tanggal Mulai
+        tblMaintenance.getColumnModel().getColumn(3).setPreferredWidth(150); // Tanggal selesai
+        tblMaintenance.getColumnModel().getColumn(4).setPreferredWidth(120); // Status
+        tblMaintenance.getColumnModel().getColumn(4).setPreferredWidth(120); // Keterangan
+        tblMaintenance.getColumnModel().getColumn(4).setPreferredWidth(80); // Nama Petugas
+        
+        
+        
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(JLabel.CENTER);
+
+        tblMaintenance.getColumnModel().getColumn(1).setCellRenderer(center);
+        tblMaintenance.getColumnModel().getColumn(3).setCellRenderer(center);
+        tblMaintenance.getColumnModel().getColumn(4).setCellRenderer(center);
+        tblMaintenance.getColumnModel().getColumn(5).setCellRenderer(center);
+        tblMaintenance.getColumnModel().getColumn(6).setCellRenderer(center);
+        
+        
 
         controller = new MaintenanceController(this);
 
@@ -57,10 +83,24 @@ public class Maintenance extends javax.swing.JPanel {
         cmbPilihAlat.addActionListener(e -> pilihAlat());
         cmbPilihInspeksi.addActionListener(e -> pilihInspeksi());
 
-//        setTableAction();
+        tblMaintenance.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
 
+                int row = tblMaintenance.getSelectedRow();
+
+                if (row == -1) {
+                    selectedId = -1;
+                } else {
+                    selectedId = Integer.parseInt(
+                            tblMaintenance.getValueAt(row, 0).toString()
+                    );
+                }
+            }
+        });
+
+//        setTableAction();
     }
-    
+
     private void loadJenisAlat() {
 
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -150,7 +190,6 @@ public class Maintenance extends javax.swing.JPanel {
         controller.pilihInspeksi(idInspeksi);
     }
 
-    
     private void resetForm() {
         txtKodeAlat.setText("");
         txtNamaAlat.setText("");
@@ -163,7 +202,7 @@ public class Maintenance extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblMaintenance.getModel();
         model.setRowCount(0);
     }
-    
+
     private void resetInspeksi() {
         inspeksiList = null;
 
@@ -172,37 +211,36 @@ public class Maintenance extends javax.swing.JPanel {
 
         cmbPilihInspeksi.setModel(model);
     }
-    
-    
+
     public void showTable(List<MaintenanceModel> list) {
         DefaultTableModel model = (DefaultTableModel) tblMaintenance.getModel();
         model.setRowCount(0);
-
+        int n = 0;
         for (MaintenanceModel i : list) {
             model.addRow(new Object[]{
                 i.getIdMaintenance(),
+                ++n,
                 i.getTanggalMulai() != null
-                    ? new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm")
-                        .format(i.getTanggalMulai())
-                    : "-",
+                ? new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm")
+                .format(i.getTanggalMulai())
+                : "-",
                 i.getTanggalSelesai() != null
-                    ? new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm")
-                        .format(i.getTanggalSelesai())
-                    : "-",
+                ? new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm")
+                .format(i.getTanggalSelesai())
+                : "-",
                 i.getStatus(),
                 i.getKeterangan(),
-                i.getNamaPengguna(), 
-                "Detail"
+                i.getNamaPengguna()
             });
         }
     }
-    
+
     public void showDetailAlat(AlatModel a) {
         txtKodeAlat.setText(a.getKodeAlat());
         txtNamaAlat.setText(a.getNamaAlat());
 
         cmbJenisAlat.setSelectedItem(a.getJenisAlat());
-        cmbLokasi.setSelectedItem(new LokasiModel(a.getIdLokasi())); 
+        cmbLokasi.setSelectedItem(new LokasiModel(a.getIdLokasi()));
 //        System.out.println("DB Lokasi: [" + a.getIdLokasi() + "]");
 
         // null safe
@@ -212,10 +250,8 @@ public class Maintenance extends javax.swing.JPanel {
             dateBeli.setDate(null);
         }
 
-        
     }
-    
-    
+
     public void showMessage(String msg) {
         javax.swing.JOptionPane.showMessageDialog(this, msg);
     }
@@ -253,6 +289,7 @@ public class Maintenance extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cmbPilihAlat = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -270,33 +307,44 @@ public class Maintenance extends javax.swing.JPanel {
         tblMaintenance = new javax.swing.JTable();
         dateBeli = new com.toedter.calendar.JDateChooser();
 
-        jPanel1.setBackground(new java.awt.Color(255, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(232, 31, 71));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon/icons8-tools-32.png"))); // NOI18N
         jLabel1.setText("Maintenance ");
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton1.setText("Add");
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
+        jButton2.setBackground(new java.awt.Color(153, 153, 153));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Detail");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 490, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
 
@@ -372,8 +420,8 @@ public class Maintenance extends javax.swing.JPanel {
                                     .addGap(18, 18, 18)
                                     .addComponent(dateBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,12 +433,12 @@ public class Maintenance extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbPilihAlat, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbPilihAlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbPilihInspeksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105)
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(txtKodeAlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -423,8 +471,82 @@ public class Maintenance extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbPilihInspeksiActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int indexAlat = cmbPilihAlat.getSelectedIndex();
+
+        if (indexAlat <= 0 || alatList == null) {
+            JOptionPane.showMessageDialog(this, "Pilih alat dulu!");
+            return;
+        }
+
+        int idAlat = alatList.get(indexAlat - 1).getIdAlat();
+
+        int indexInspeksi = cmbPilihInspeksi.getSelectedIndex();
+
+        if (indexInspeksi <= 0 || inspeksiList == null) {
+            JOptionPane.showMessageDialog(this, "Pilih inspeksi dulu!");
+            return;
+        }
+
+        int idInspeksi = inspeksiList.get(indexInspeksi - 1).getIdInspeksi();
+
+        java.awt.Frame parent
+                = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+
+        TambahMaintenanceDialog dialog
+                = new TambahMaintenanceDialog(parent, true);
+
+        dialog.setController(controller);
+        dialog.setIdAlat(idAlat);
+        dialog.setIdInspeksi(idInspeksi);
+
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+
+        controller.pilihInspeksi(idInspeksi);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (selectedId == -1) {
+            javax.swing.JOptionPane.showMessageDialog(parent, "Pilih data dulu!");
+            return;
+        }
+        int indexInspeksi = cmbPilihInspeksi.getSelectedIndex();
+
+        if (indexInspeksi <= 0 || inspeksiList == null) {
+            JOptionPane.showMessageDialog(this, "Pilih inspeksi dulu!");
+            return;
+        }
+
+        int idInspeksi = inspeksiList.get(indexInspeksi - 1).getIdInspeksi();
+
+        int viewRow = tblMaintenance.getSelectedRow();
+        if (viewRow == -1) {
+            return;
+        }
+
+        int row = tblMaintenance.convertRowIndexToModel(viewRow);
+
+        int idMaintenance = Integer.parseInt(
+                tblMaintenance.getValueAt(row, 0).toString()
+        );
+
+        MaintenanceModel m = controller.getById(idMaintenance);
+
+        java.awt.Frame parent
+                = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+
+        DetailMaintenanceDialog dialog
+                = new DetailMaintenanceDialog(parent, true);
+
+        dialog.setController(controller);
+        dialog.setIdAlat(m.getIdAlat());
+        dialog.setData(m);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+
+        controller.pilihInspeksi(idInspeksi);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -434,6 +556,7 @@ public class Maintenance extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmbPilihInspeksi;
     private com.toedter.calendar.JDateChooser dateBeli;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

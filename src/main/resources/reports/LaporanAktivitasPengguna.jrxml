@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Laporan_Log_Aktivitas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a26d62ce-d547-4a77-8277-f413afbc4050">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+				l.id_log,
+				l.waktu,
+				l.aksi,
+				l.tabel_terkait,
+				l.record_id,
+				l.deskripsi,
+				p.id_pengguna,
+				p.nama_pengguna,
+				p.role
+			FROM log_aktivitas l
+			LEFT JOIN pengguna p ON l.id_pengguna = p.id_pengguna
+			ORDER BY l.waktu DESC]]>
+	</queryString>
+	<field name="id_log" class="java.lang.Integer"/>
+	<field name="waktu" class="java.sql.Timestamp"/>
+	<field name="aksi" class="java.lang.String"/>
+	<field name="tabel_terkait" class="java.lang.String"/>
+	<field name="record_id" class="java.lang.Integer"/>
+	<field name="deskripsi" class="java.lang.String"/>
+	<field name="id_pengguna" class="java.lang.Integer"/>
+	<field name="nama_pengguna" class="java.lang.String"/>
+	<field name="role" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="28" uuid="0e618118-6d5b-4bcf-bd78-ae941406a785"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN AKTIVITAS PENGGUNA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="52" width="555" height="1" uuid="c58d3d08-e529-43bc-830d-fc49ba75423b"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="25" backcolor="#EFEFEF" uuid="40e10501-a0c4-43ef-ae8a-82aaf8a107c2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="25" height="25" uuid="c206666c-2ee5-4bac-a23e-cbe5445b1a20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="0" width="85" height="25" uuid="78f8f04b-d381-4656-886d-cb7e1925d4ab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Waktu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="35" height="25" uuid="35093ebe-617b-4915-88e6-30e06f52f68c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID User]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="0" width="75" height="25" uuid="a07ce17a-00a4-4075-bef3-b9a789b45837"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Pengguna]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="45" height="25" uuid="f049f42b-806c-4692-9ef1-fcc9a6d2dada"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Role]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="0" width="45" height="25" uuid="126ba38f-c4d0-4413-8f3f-6a5558823f89"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="60" height="25" uuid="52550d28-01a9-4d2d-a535-7f5661c585db"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tabel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="45" height="25" uuid="ce81bd90-c0e4-4a24-8cb3-1e75c46e0bac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Record ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="0" width="140" height="25" uuid="6415ade7-7728-453f-b0e0-2c00ae7859fc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deskripsi Aktivitas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="25" height="22" uuid="ddf72e05-1eb5-4f71-938b-da8c8dba3f40"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd-MM-yyyy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="25" y="0" width="85" height="22" uuid="e0e0d32d-38b0-41d6-9b79-d369fc97dfea"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{waktu}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="110" y="0" width="35" height="22" uuid="9e4031b6-dd43-4f87-ab40-f573aace70eb"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_pengguna} == null ? "-" : $F{id_pengguna}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="145" y="0" width="75" height="22" uuid="a6c0ffed-27f5-4682-8aa3-870b792a1df4"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_pengguna} == null ? "System" : $F{nama_pengguna}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="220" y="0" width="45" height="22" uuid="e56d27f5-845f-4d20-8a4d-20c087c78ff6"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{role} == null ? "-" : $F{role}.substring(0, 1).toUpperCase() + $F{role}.substring(1)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="265" y="0" width="45" height="22" uuid="8b0e9c23-b7a0-4ee3-8b1b-75021f975c84"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aksi}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="310" y="0" width="60" height="22" uuid="1e38223e-4ae3-41f9-8fe4-550498e0d999"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tabel_terkait}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="370" y="0" width="45" height="22" uuid="8a6341fa-9fa6-4ed9-af11-1618bd16c8b1"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{record_id} == null || $F{record_id} == 0 ? "-" : $F{record_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="415" y="0" width="140" height="22" uuid="c8733658-b6e4-4b7e-9845-9a56bac053b8"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deskripsi} == null ? "-" : $F{deskripsi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="5" width="80" height="20" uuid="c8e4c254-7379-4923-b219-f63e0930b897"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Halaman "+$V{PAGE_NUMBER}+" dari"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="5" width="40" height="20" uuid="63c20f62-1117-4a61-8910-8be5232955cf"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -20,6 +20,7 @@ import java.util.List;
  * @author Yuriko
  */
 public class InspeksiDAO {
+
     public boolean insertAwal(int idAlat) {
 
         String sql = """
@@ -28,14 +29,10 @@ public class InspeksiDAO {
             VALUES (?, ?, NOW(), ?, ?, ?, ?, NOW(), NOW())
         """;
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             int idPengguna = Session.getUser().getIdPengguna();
 
-            // SET PARAMETER
             ps.setInt(1, idAlat);
             ps.setInt(2, idPengguna);
 
@@ -51,11 +48,11 @@ public class InspeksiDAO {
             return false;
         }
     }
-    
+
     public List<String> getEnumKondisiAlat() {
         return EnumUtil.getEnumValues("inspeksi_alat", "kondisi");
     }
-    
+
     public List<String> getEnumStatusAlat() {
         return EnumUtil.getEnumValues("inspeksi_alat", "status");
     }
@@ -63,17 +60,14 @@ public class InspeksiDAO {
     public List<String> getEnumStatusInspeksi() {
         return EnumUtil.getEnumValues("inspeksi_alat", "status_inspeksi");
     }
-    
-    
-    
+
     public List<InspeksiModel> getByAlat(int idAlat) {
 
         List<InspeksiModel> list = new ArrayList<>();
 
         String sql = "SELECT * FROM inspeksi_alat WHERE id_alat = ? ORDER BY tanggal_inspeksi DESC";
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, idAlat);
 
@@ -83,10 +77,10 @@ public class InspeksiDAO {
                 InspeksiModel i = new InspeksiModel();
 
                 i.setIdInspeksi(rs.getInt("id_inspeksi"));
-                i.setTanggalInspeksi(rs.getTimestamp("tanggal_inspeksi")); 
+                i.setTanggalInspeksi(rs.getTimestamp("tanggal_inspeksi"));
                 i.setKondisi(rs.getString("kondisi"));
                 i.setStatus(rs.getString("status"));
-                i.setStatusInspeksi(rs.getString("status_inspeksi")); 
+                i.setStatusInspeksi(rs.getString("status_inspeksi"));
                 i.setKeterangan(rs.getString("keterangan"));
                 i.setIdPengguna(rs.getInt("id_pengguna"));
                 i.setIdAlat(rs.getInt("id_alat"));
@@ -107,25 +101,24 @@ public class InspeksiDAO {
                 + "(tanggal_inspeksi, kondisi, status, status_inspeksi, keterangan, id_pengguna, id_alat) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
             if (Session.getUser() == null) {
                 throw new RuntimeException("User belum login!");
             }
 
             int idPengguna = Session.getUser().getIdPengguna();
-            
-            ps.setTimestamp(1, i.getTanggalInspeksi()); 
+
+            ps.setTimestamp(1, i.getTanggalInspeksi());
             ps.setString(2, i.getKondisi());
             ps.setString(3, i.getStatus());
-            ps.setString(4, i.getStatusInspeksi()); 
+            ps.setString(4, i.getStatusInspeksi());
             ps.setString(5, i.getKeterangan());
-            ps.setInt(6, idPengguna); 
+            ps.setInt(6, idPengguna);
             ps.setInt(7, i.getIdAlat());
-            
+
             ps.executeUpdate();
-            
+
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 return rs.getInt(1);
@@ -137,16 +130,14 @@ public class InspeksiDAO {
 
         return 0;
     }
-    
-    
+
     public InspeksiModel getById(int id) {
 
         InspeksiModel i = null;
 
         String sql = "SELECT * FROM inspeksi_alat WHERE id_inspeksi = ?";
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, id);
 
@@ -156,12 +147,12 @@ public class InspeksiDAO {
                 i = new InspeksiModel();
 
                 i.setIdInspeksi(rs.getInt("id_inspeksi"));
-                i.setTanggalInspeksi(rs.getTimestamp("tanggal_inspeksi")); 
+                i.setTanggalInspeksi(rs.getTimestamp("tanggal_inspeksi"));
                 i.setKondisi(rs.getString("kondisi"));
                 i.setStatus(rs.getString("status"));
-                i.setStatusInspeksi(rs.getString("status_inspeksi")); 
+                i.setStatusInspeksi(rs.getString("status_inspeksi"));
                 i.setKeterangan(rs.getString("keterangan"));
-                i.setIdPengguna(rs.getInt("id_pengguna")); 
+                i.setIdPengguna(rs.getInt("id_pengguna"));
                 i.setIdAlat(rs.getInt("id_alat"));
             }
 
@@ -171,15 +162,14 @@ public class InspeksiDAO {
 
         return i;
     }
-    
+
     public boolean update(InspeksiModel i) {
 
         String sql = "UPDATE inspeksi_alat SET "
                 + "tanggal_inspeksi=?, kondisi=?, status=?, status_inspeksi=?, keterangan=? "
                 + "WHERE id_inspeksi=?";
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setTimestamp(1, i.getTanggalInspeksi());
             ps.setString(2, i.getKondisi());
@@ -196,8 +186,7 @@ public class InspeksiDAO {
 
         return false;
     }
-    
-    
+
     public List<InspeksiModel> getAll() {
 
         List<InspeksiModel> list = new ArrayList<>();
@@ -213,9 +202,7 @@ public class InspeksiDAO {
             ORDER BY i.tanggal_inspeksi DESC
         """;
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
 
@@ -242,6 +229,5 @@ public class InspeksiDAO {
 
         return list;
     }
-    
-    
+
 }
