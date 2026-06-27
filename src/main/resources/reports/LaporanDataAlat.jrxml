@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Laporan_Data_Alat" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77ee2248-82c7-4d7f-994b-3eecbbb36475">
+	<property name="ireport.zoom" value="1.25"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+				a.id_alat,
+				a.kode_alat,
+				a.nama_alat,
+				a.jenis_alat,
+				a.tanggal_pembelian,
+				l.nama_lokasi,
+				l.lantai,
+				l.gedung,
+				i.tanggal_inspeksi AS tanggal_inspeksi_terakhir,
+				p.nama_pengguna AS nama_petugas_terakhir
+			FROM alat a
+			LEFT JOIN lokasi_alat l ON a.id_lokasi = l.id_lokasi
+			LEFT JOIN (
+				SELECT id_alat, tanggal_inspeksi, id_pengguna,
+				       ROW_NUMBER() OVER (PARTITION BY id_alat ORDER BY tanggal_inspeksi DESC) as rn
+				FROM inspeksi_alat
+			) i ON a.id_alat = i.id_alat AND i.rn = 1
+			LEFT JOIN pengguna p ON i.id_pengguna = p.id_pengguna
+			ORDER BY a.kode_alat ASC]]>
+	</queryString>
+	<field name="id_alat" class="java.lang.Integer"/>
+	<field name="kode_alat" class="java.lang.String"/>
+	<field name="nama_alat" class="java.lang.String"/>
+	<field name="jenis_alat" class="java.lang.String"/>
+	<field name="tanggal_pembelian" class="java.sql.Timestamp"/>
+	<field name="nama_lokasi" class="java.lang.String"/>
+	<field name="lantai" class="java.lang.String"/>
+	<field name="gedung" class="java.lang.String"/>
+	<field name="tanggal_inspeksi_terakhir" class="java.sql.Timestamp"/>
+	<field name="nama_petugas_terakhir" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="28" uuid="e3b0c442-98fc-11eb-a8b3-0242ac130003"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN MASTER DATA ALAT]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="52" width="555" height="1" uuid="8d646b96-98fc-11eb-a8b3-0242ac130003"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="10" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="25" backcolor="#EFEFEF" uuid="ba757040-98fc-11eb-a8b3-0242ac130003"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="75" height="25" uuid="1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode Alat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="0" width="100" height="25" uuid="2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c7d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Alat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="0" width="90" height="25" uuid="7a8b9c0d-6e7f-8a9b-0c1d-2e3f4a5b6c7d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis Alat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="0" width="110" height="25" uuid="3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lokasi Penempatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="0" width="95" height="25" uuid="4a5b6c7d-8e9f-0a1b-2c3d-4e5f6a7b8c9d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inspeksi Terakhir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="85" height="25" uuid="6a7b8c9d-0e1f-2a3b-4c5d-6e7f8a9b0c1d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Oleh Petugas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="75" height="22" uuid="7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kode_alat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="75" y="0" width="100" height="22" uuid="8a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_alat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="175" y="0" width="90" height="22" uuid="9a8b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jenis_alat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="265" y="0" width="110" height="22" uuid="9a0b1c2d-3e4f-5a6b-7c8d-8e9f0a1b2c3d"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_lokasi} != null ? $F{nama_lokasi} + " (Lt." + $F{lantai} + ")" : "-"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="true">
+				<reportElement x="375" y="0" width="95" height="22" uuid="0b1c2d3e-4f5a-6b7c-8d8e-9f0a1b2c3d4e"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal_inspeksi_terakhir}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="470" y="0" width="85" height="22" uuid="2c3d4e5f-6a7b-8c9d-0e1f-2a3b4c5d6e7f"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_petugas_terakhir} == null ? "-" : $F{nama_petugas_terakhir}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="5" width="80" height="20" uuid="3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Halaman "+$V{PAGE_NUMBER}+" dari"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="5" width="40" height="20" uuid="4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

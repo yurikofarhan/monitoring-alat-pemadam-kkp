@@ -394,7 +394,6 @@ public class TambahAlatDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnBatalActionPerformed
 
