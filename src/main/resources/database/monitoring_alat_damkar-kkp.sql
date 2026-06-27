@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 01, 2026 at 01:32 PM
+-- Generation Time: Jun 27, 2026 at 10:19 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.4.12
 
@@ -34,7 +34,7 @@ CREATE TABLE `alat` (
   `jenis_alat` enum('APAR','APAB','HYDRANT','SPRINKLER','SUPPRESSION','PENDUKUNG','PROTEKSI') NOT NULL,
   `tanggal_pembelian` datetime NOT NULL,
   `id_lokasi` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `alat`
@@ -42,7 +42,8 @@ CREATE TABLE `alat` (
 
 INSERT INTO `alat` (`id_alat`, `kode_alat`, `nama_alat`, `jenis_alat`, `tanggal_pembelian`, `id_lokasi`) VALUES
 (1, 'A001', 'APAR 3kg', 'APAR', '2025-06-10 20:24:35', 2),
-(2, 'A002', 'Hydrant Valve', 'HYDRANT', '2025-11-13 20:33:02', 2);
+(2, 'A002', 'Hydrant Valve', 'HYDRANT', '2025-11-13 20:33:02', 2),
+(8, 'A003', 'Nozzle', 'PENDUKUNG', '2026-06-04 11:02:35', 2);
 
 -- --------------------------------------------------------
 
@@ -59,15 +60,18 @@ CREATE TABLE `inspeksi_alat` (
   `keterangan` varchar(255) NOT NULL,
   `id_pengguna` int NOT NULL,
   `id_alat` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `inspeksi_alat`
 --
 
 INSERT INTO `inspeksi_alat` (`id_inspeksi`, `tanggal_inspeksi`, `kondisi`, `status`, `status_inspeksi`, `keterangan`, `id_pengguna`, `id_alat`) VALUES
-(1, '2026-05-02 00:00:00', 'baik', 'layak', 'selesai', 'ok', 1, 1),
-(2, '2026-06-03 00:00:00', 'baik', 'perlu_perawatan', 'proses', 'mt', 1, 1);
+(1, '2026-05-02 00:00:00', 'rusak_ringan', 'layak', 'selesai', 'ok', 1, 1),
+(2, '2026-06-03 00:00:00', 'baik', 'perlu_perawatan', 'proses', 'mt', 1, 1),
+(3, '2026-06-03 00:00:00', 'baik', 'perlu_perawatan', 'proses', 'test', 1, 1),
+(4, '2026-06-01 00:00:00', 'rusak_ringan', 'layak', 'proses', 'test', 1, 2),
+(5, '2026-06-01 00:00:00', 'rusak_ringan', 'perlu_perawatan', 'proses', '1', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -83,7 +87,7 @@ CREATE TABLE `log_aktivitas` (
   `tabel_terkait` varchar(255) NOT NULL,
   `record_id` int DEFAULT NULL,
   `deskripsi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `log_aktivitas`
@@ -105,7 +109,17 @@ INSERT INTO `log_aktivitas` (`id_log`, `id_pengguna`, `waktu`, `aksi`, `tabel_te
 (13, 1, '2026-06-01 20:20:49', 'INSERT', 'pengguna', 5, 'Menambah data Pengguna 5'),
 (14, 1, '2026-06-01 20:21:03', 'UPDATE', 'pengguna', 5, 'Mengubah data Pengguna 5'),
 (15, 1, '2026-06-01 20:21:35', 'DELETE', 'pengguna', 5, 'Menghapus data Pengguna 5'),
-(16, 1, '2026-06-01 20:30:23', 'INSERT', 'inspeksi', 2, 'Menambah data Inspeksi pada Id Alat 1');
+(16, 1, '2026-06-01 20:30:23', 'INSERT', 'inspeksi', 2, 'Menambah data Inspeksi pada Id Alat 1'),
+(17, 1, '2026-06-04 11:02:37', 'INSERT', 'alat', 8, 'Menambah Data Alat A003'),
+(18, 1, '2026-06-26 20:18:46', 'INSERT', 'inspeksi', 3, 'Menambah data Inspeksi pada Id Alat 1'),
+(19, 1, '2026-06-27 15:35:45', 'INSERT', 'inspeksi', 4, 'Menambah data Inspeksi pada Id Alat 2'),
+(20, 1, '2026-06-28 03:09:56', 'INSERT', 'Maintenance', 3, 'Menamabah data Maintenance pada Id Alat : 1'),
+(21, 1, '2026-06-28 04:39:45', 'UPDATE', 'Maintenance', 1, 'Mengubah data Maintenance pada Id Alat: 0'),
+(22, 1, '2026-06-28 04:45:00', 'INSERT', 'Maintenance', 4, 'Menamabah data Maintenance pada Kode Alat : null'),
+(23, 1, '2026-06-28 04:46:23', 'INSERT', 'inspeksi', 5, 'Menambah data Inspeksi pada Id Alat: 8'),
+(24, 1, '2026-06-28 04:54:45', 'UPDATE', 'Maintenance', 2, 'Mengubah data Maintenance pada Id Alat: 0'),
+(25, 1, '2026-06-28 04:56:25', 'INSERT', 'Maintenance', 5, 'Menamabah data Maintenance pada id Alat : 1'),
+(26, 1, '2026-06-28 05:16:35', 'UPDATE', 'Maintenance', 2, 'Mengubah data Maintenance pada Id Alat: 2');
 
 -- --------------------------------------------------------
 
@@ -118,7 +132,7 @@ CREATE TABLE `lokasi_alat` (
   `nama_lokasi` varchar(100) NOT NULL,
   `lantai` varchar(10) NOT NULL,
   `gedung` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `lokasi_alat`
@@ -141,13 +155,24 @@ CREATE TABLE `maintenance_alat` (
   `id_maintenance` int NOT NULL,
   `tanggal_mulai` datetime NOT NULL,
   `tanggal_selesai` datetime NOT NULL,
-  `bukti_image` varchar(255) NOT NULL,
-  `status` enum('pending','proses','selesai') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bukti_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` enum('pending','proses','selesai') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `id_alat` int NOT NULL,
   `id_inspeksi` int NOT NULL,
   `id_pengguna` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `maintenance_alat`
+--
+
+INSERT INTO `maintenance_alat` (`id_maintenance`, `tanggal_mulai`, `tanggal_selesai`, `bukti_image`, `status`, `keterangan`, `id_alat`, `id_inspeksi`, `id_pengguna`) VALUES
+(1, '2026-06-01 00:00:00', '2026-06-04 15:09:26', 'ba613291-5ba3-44d3-810d-e414f7e6ad01.png', 'proses', '12', 1, 2, 1),
+(2, '2026-06-01 00:00:00', '2026-06-01 00:00:00', NULL, 'pending', 'test', 2, 4, 1),
+(3, '2026-06-01 00:00:00', '2026-06-01 03:09:52', NULL, 'proses', '111111111', 1, 2, 1),
+(4, '2026-06-01 00:00:00', '2026-06-01 04:44:59', NULL, 'pending', '', 1, 1, 1),
+(5, '2026-06-02 00:00:00', '2026-06-05 04:56:21', NULL, 'pending', '123', 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -162,7 +187,7 @@ CREATE TABLE `pengguna` (
   `password` varchar(255) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
   `role` enum('admin','petugas') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengguna`
@@ -240,19 +265,19 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `alat`
 --
 ALTER TABLE `alat`
-  MODIFY `id_alat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_alat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `inspeksi_alat`
 --
 ALTER TABLE `inspeksi_alat`
-  MODIFY `id_inspeksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_inspeksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `id_log` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_log` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `lokasi_alat`
@@ -264,7 +289,7 @@ ALTER TABLE `lokasi_alat`
 -- AUTO_INCREMENT for table `maintenance_alat`
 --
 ALTER TABLE `maintenance_alat`
-  MODIFY `id_maintenance` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_maintenance` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pengguna`

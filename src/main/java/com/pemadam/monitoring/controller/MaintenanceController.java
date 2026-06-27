@@ -38,7 +38,6 @@ public class MaintenanceController {
     // Load data ke combo
     public void loadCombo() {
         List<AlatModel> list = alatDAO.getAll();
-        System.out.println("list = " + list);
         view.setComboAlat(list);
     }
 
@@ -56,15 +55,13 @@ public class MaintenanceController {
 
         List<MaintenanceModel> list
                 = maintenanceDAO.getByInspeksi(idInspeksi);
-
         view.showTable(list);
     }
 
-    public List<MaintenanceModel> getMaintenanceByInspeksi(int idInspeksi) {
-        MaintenanceDAO dao = new MaintenanceDAO();
-        return dao.getByInspeksi(idInspeksi);
-    }
-
+//    public List<MaintenanceModel> getMaintenanceByInspeksi(int idInspeksi) {
+//        MaintenanceDAO dao = new MaintenanceDAO();
+//        return dao.getByInspeksi(idInspeksi);
+//    }
     public boolean tambah(MaintenanceModel m) {
 
         if (m.getTanggalMulai() == null || m.getTanggalSelesai() == null
@@ -82,7 +79,7 @@ public class MaintenanceController {
                         "INSERT",
                         "Maintenance",
                         id,
-                        "Menamabah data Maintenance pada Id Alat : " + m.getIdAlat()
+                        "Menamabah data Maintenance pada id Alat : " + m.getIdAlat()
                 );
                 return true;
             }
@@ -98,30 +95,23 @@ public class MaintenanceController {
         return maintenanceDAO.getById(id);
     }
 
-    public boolean update(int idMaintenance, Date tgl_mulai, Date tgl_selesai, String buktiImage,
-            String status, String ket) {
+    public boolean update(MaintenanceModel m) {
 
-        if (tgl_mulai == null || tgl_selesai == null
-                || status == null || status.trim().isEmpty()) {
+        if (m.getTanggalMulai() == null || m.getTanggalSelesai() == null
+                || m.getStatus() == null || m.getStatus().trim().isEmpty()) {
+            System.out.println("sss");
             return false;
         }
 
         try {
-            MaintenanceModel m = new MaintenanceModel();
-            m.setIdMaintenance(idMaintenance);
-            m.setTanggalMulai(new Timestamp(tgl_mulai.getTime()));
-            m.setTanggalSelesai(new Timestamp(tgl_selesai.getTime()));
-            m.setBuktiImage(buktiImage);
-            m.setStatus(status);
-            m.setKeterangan(ket);
 
             maintenanceDAO.update(m);
-            if (idMaintenance > 0) {
+            if (m.getIdMaintenance() > 0) {
                 LogAktivitasDAO.simpan(
                         Session.getUser().getIdPengguna(),
                         "UPDATE",
                         "Maintenance",
-                        idMaintenance,
+                        m.getIdMaintenance(),
                         "Mengubah data Maintenance pada Id Alat: " + m.getIdAlat()
                 );
             }

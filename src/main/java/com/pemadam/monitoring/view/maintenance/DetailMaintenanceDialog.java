@@ -4,7 +4,6 @@
  */
 package com.pemadam.monitoring.view.maintenance;
 
-
 import com.pemadam.monitoring.controller.InspeksiController;
 import com.pemadam.monitoring.controller.MaintenanceController;
 import com.pemadam.monitoring.dao.MaintenanceDAO;
@@ -22,51 +21,51 @@ import java.util.Date;
  * @author Yuriko
  */
 public class DetailMaintenanceDialog extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DetailMaintenanceDialog.class.getName());
 
     /**
      * Creates new form TambahPenggunaDialog
      */
-    
     private int idMaintenance;
     private int idInspeksi;
     private int idAlat;
     private String oldImage;
-    private MaintenanceController controller ;
+    private MaintenanceController controller;
     private static final int IMAGE_SIZE = 128;
     private File selectedFile;
+
     public DetailMaintenanceDialog(java.awt.Frame parent, boolean modal) {
 //        super(parent, modal);
         super(parent, ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
-        
+
         initComponents();
-        
+
         loadStatus();
-        
-        
+
     }
-    
-    
-    
+
     public void setController(MaintenanceController controller) {
         this.controller = controller;
     }
-    
+
     public void setIdAlat(int idAlat) {
         this.idAlat = idAlat;
     }
-    
-    
+
+    public int getIdAlat() {
+        return idAlat;
+    }
+
     public void setIdInspeksi(int idInspeksi) {
         this.idInspeksi = idInspeksi;
     }
-    
+
     public void setIdMaintenance(int idMaintenance) {
-    this.idMaintenance = idMaintenance;
-}
-    
+        this.idMaintenance = idMaintenance;
+    }
+
     private void loadStatus() {
 
         MaintenanceDAO dao = new MaintenanceDAO();
@@ -78,6 +77,7 @@ public class DetailMaintenanceDialog extends javax.swing.JDialog {
 
         cmbStatus.setModel(model);
     }
+
     public void setData(MaintenanceModel i) {
 
         this.idMaintenance = i.getIdMaintenance();
@@ -87,31 +87,31 @@ public class DetailMaintenanceDialog extends javax.swing.JDialog {
 
         try {
             dateMulai.setDate(new Date(
-                i.getTanggalMulai().getTime()
+                    i.getTanggalMulai().getTime()
             ));
         } catch (Exception e) {
             dateMulai.setDate(null);
         }
-        
+
         try {
             dateSelesai.setDate(new Date(
-                i.getTanggalSelesai().getTime()
+                    i.getTanggalSelesai().getTime()
             ));
         } catch (Exception e) {
             dateSelesai.setDate(null);
         }
-        
+
         cmbStatus.setSelectedItem(EnumUtil.formatEnum(i.getStatus()));
         txtKeterangan.setText(i.getKeterangan());
-        
+
         ImageIcon img = ImageUtil.loadImage(i.getBuktiImage(), "bukti-maintenance", IMAGE_SIZE, IMAGE_SIZE);
 
         if (img != null) {
             lblFoto.setIcon(img);
         }
-        
+
     }
-    
+
     private void chooseImage() {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Pilih Foto");
@@ -131,8 +131,7 @@ public class DetailMaintenanceDialog extends javax.swing.JDialog {
             lblFoto.setIcon(new ImageIcon(img));
         }
     }
-   
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -329,44 +328,57 @@ public class DetailMaintenanceDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-       try {
+        try {
 
             Date tglMulai = dateMulai.getDate();
             Date tglSelesai = dateSelesai.getDate();
-            
+
             String status = cmbStatus.getSelectedItem().toString()
                     .toLowerCase()
                     .replace(" ", "_");
             String ket = txtKeterangan.getText();
 
-            
             String imageName = null;
-            
+
             if (selectedFile != null) {
                 imageName = ImageUtil.saveImage(selectedFile, oldImage, "bukti-maintenance");
             } else if (oldImage != null) {
-                imageName = oldImage; 
+                imageName = oldImage;
             } else {
                 imageName = null;
             }
-            
-            
-            boolean sukses = controller.update(
-                idMaintenance,
-                tglMulai,
-                tglSelesai,
-                imageName,
-                status,
-                ket
-            );
+
+//            boolean sukses = controller.update(
+//                idMaintenance,
+//                tglMulai,
+//                tglSelesai,
+//                imageName,
+//                status,
+//                ket
+//            );
+            java.util.Date dateM = dateMulai.getDate();
+            java.util.Date dateS = dateMulai.getDate();
+            java.sql.Timestamp a = null;
+            java.sql.Timestamp b = null;
+            if (dateM != null && dateS != null) {
+                a = new java.sql.Timestamp(dateM.getTime());
+                b = new java.sql.Timestamp(dateS.getTime());
+            }
+            MaintenanceModel m = new MaintenanceModel();
+            m.setIdMaintenance(idMaintenance);
+            m.setTanggalMulai(a);
+            m.setTanggalSelesai(b);
+            m.setBuktiImage(imageName);
+            m.setKeterangan(ket);
+            m.setStatus(status);
+            m.setIdAlat(idAlat);
+            boolean sukses = controller.update(m);
             if (sukses) {
                 JOptionPane.showMessageDialog(this, "Berhasil update!");
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Gagal update!");
             }
-            
-            
 
         } catch (Exception e) {
             e.printStackTrace();

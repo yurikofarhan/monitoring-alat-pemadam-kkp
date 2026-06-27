@@ -54,7 +54,7 @@ public class Maintenance extends javax.swing.JPanel {
         tblMaintenance.getColumnModel().getColumn(0).setMinWidth(0);
         tblMaintenance.getColumnModel().getColumn(0).setMaxWidth(0);
         tblMaintenance.getColumnModel().getColumn(0).setWidth(0);
-        
+
         tblMaintenance.setRowHeight(25);
         tblMaintenance.getColumnModel().getColumn(1).setPreferredWidth(10);  // No
         tblMaintenance.getColumnModel().getColumn(2).setPreferredWidth(150); // Tanggal Mulai
@@ -62,9 +62,7 @@ public class Maintenance extends javax.swing.JPanel {
         tblMaintenance.getColumnModel().getColumn(4).setPreferredWidth(120); // Status
         tblMaintenance.getColumnModel().getColumn(4).setPreferredWidth(120); // Keterangan
         tblMaintenance.getColumnModel().getColumn(4).setPreferredWidth(80); // Nama Petugas
-        
-        
-        
+
         DefaultTableCellRenderer center = new DefaultTableCellRenderer();
         center.setHorizontalAlignment(JLabel.CENTER);
 
@@ -73,8 +71,6 @@ public class Maintenance extends javax.swing.JPanel {
         tblMaintenance.getColumnModel().getColumn(4).setCellRenderer(center);
         tblMaintenance.getColumnModel().getColumn(5).setCellRenderer(center);
         tblMaintenance.getColumnModel().getColumn(6).setCellRenderer(center);
-        
-        
 
         controller = new MaintenanceController(this);
 
@@ -154,7 +150,7 @@ public class Maintenance extends javax.swing.JPanel {
                             .format(i.getTanggalInspeksi())
                     : "-";
 
-            model.addElement(tgl + " | " + i.getKondisi());
+            model.addElement(i.getIdInspeksi() + " | " + tgl + " | " + i.getKondisi());
         }
 
         cmbPilihInspeksi.setModel(model);
@@ -184,9 +180,13 @@ public class Maintenance extends javax.swing.JPanel {
             model.setRowCount(0);
             return;
         }
+        String selected = (String) cmbPilihInspeksi.getSelectedItem();
 
-        int idInspeksi = inspeksiList.get(index - 1).getIdInspeksi();
+        if (selected == null || selected.startsWith("-----")) {
+            return;
+        }
 
+        int idInspeksi = Integer.parseInt(selected.split("\\|")[0].trim());
         controller.pilihInspeksi(idInspeksi);
     }
 
@@ -357,7 +357,7 @@ public class Maintenance extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Pilih Data Inspeksi :");
 
-        cmbPilihInspeksi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Data Inspeksi" }));
+        cmbPilihInspeksi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------" }));
         cmbPilihInspeksi.addActionListener(this::cmbPilihInspeksiActionPerformed);
 
         jLabel3.setText("Kode Alat");
@@ -466,10 +466,6 @@ public class Maintenance extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbPilihAlatActionPerformed
 
-    private void cmbPilihInspeksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPilihInspeksiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbPilihInspeksiActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int indexAlat = cmbPilihAlat.getSelectedIndex();
 
@@ -499,7 +495,7 @@ public class Maintenance extends javax.swing.JPanel {
         dialog.setIdAlat(idAlat);
         dialog.setIdInspeksi(idInspeksi);
 
-        dialog.setLocationRelativeTo(this);
+        dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
 
         controller.pilihInspeksi(idInspeksi);
@@ -547,6 +543,10 @@ public class Maintenance extends javax.swing.JPanel {
         controller.pilihInspeksi(idInspeksi);
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cmbPilihInspeksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPilihInspeksiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPilihInspeksiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
