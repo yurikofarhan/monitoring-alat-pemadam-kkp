@@ -20,39 +20,35 @@ public class DashboardDAO {
 
         DashboardModel model = new DashboardModel();
 
-        String sql =
-                "SELECT "
+        String sql
+                = "SELECT "
                 + "(SELECT COUNT(*) FROM alat) AS total_alat, "
                 + "(SELECT COUNT(*) "
                 + " FROM inspeksi_alat i "
                 + " JOIN ("
-                + "     SELECT id_alat, MAX(tanggal_inspeksi) tanggal "
+                + "     SELECT id_alat, MAX(id_inspeksi) id_inspeksi "
                 + "     FROM inspeksi_alat "
                 + "     GROUP BY id_alat"
-                + " ) x ON i.id_alat=x.id_alat AND i.tanggal_inspeksi=x.tanggal "
+                + " ) x ON i.id_inspeksi = x.id_inspeksi "
                 + " WHERE i.status='layak') AS siap_pakai, "
-
                 + "(SELECT COUNT(*) "
                 + " FROM inspeksi_alat i "
                 + " JOIN ("
-                + "     SELECT id_alat, MAX(tanggal_inspeksi) tanggal "
+                + "     SELECT id_alat, MAX(id_inspeksi) id_inspeksi "
                 + "     FROM inspeksi_alat "
                 + "     GROUP BY id_alat"
-                + " ) x ON i.id_alat=x.id_alat AND i.tanggal_inspeksi=x.tanggal "
+                + " ) x ON i.id_inspeksi = x.id_inspeksi "
                 + " WHERE i.status='perlu_perawatan') AS perawatan, "
-
                 + "(SELECT COUNT(*) "
                 + " FROM inspeksi_alat i "
                 + " JOIN ("
-                + "     SELECT id_alat, MAX(tanggal_inspeksi) tanggal "
+                + "     SELECT id_alat, MAX(id_inspeksi) id_inspeksi "
                 + "     FROM inspeksi_alat "
                 + "     GROUP BY id_alat"
-                + " ) x ON i.id_alat=x.id_alat AND i.tanggal_inspeksi=x.tanggal "
-                + " WHERE i.status='tidak_layak') AS rusak";
+                + " ) x ON i.id_inspeksi = x.id_inspeksi "
+                + " WHERE i.status='tidak_layak') AS rusak";;
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             if (rs.next()) {
 

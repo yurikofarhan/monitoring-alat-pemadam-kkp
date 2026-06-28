@@ -211,7 +211,7 @@ public class Laporan extends javax.swing.JPanel {
         btnExcel1 = new javax.swing.JButton();
         btnExcel21 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        btnWord1 = new javax.swing.JButton();
+        btnDocx = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -221,7 +221,7 @@ public class Laporan extends javax.swing.JPanel {
         btnPDF2 = new javax.swing.JButton();
         btnExcel2 = new javax.swing.JButton();
         btnExcel22 = new javax.swing.JButton();
-        btnWord2 = new javax.swing.JButton();
+        btnDocx2 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -231,7 +231,7 @@ public class Laporan extends javax.swing.JPanel {
         btnPDF3 = new javax.swing.JButton();
         btnExcel3 = new javax.swing.JButton();
         btnExcel23 = new javax.swing.JButton();
-        btnWord3 = new javax.swing.JButton();
+        btnDocx3 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
@@ -241,7 +241,7 @@ public class Laporan extends javax.swing.JPanel {
         btnPDF4 = new javax.swing.JButton();
         btnExcel4 = new javax.swing.JButton();
         btnExcel24 = new javax.swing.JButton();
-        btnWord4 = new javax.swing.JButton();
+        btnDocx4 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -251,7 +251,7 @@ public class Laporan extends javax.swing.JPanel {
         btnPDF5 = new javax.swing.JButton();
         btnExcel5 = new javax.swing.JButton();
         btnExcel25 = new javax.swing.JButton();
-        btnWord5 = new javax.swing.JButton();
+        btnDocx5 = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -325,11 +325,11 @@ public class Laporan extends javax.swing.JPanel {
 
         jLabel2.setText("Export File :");
 
-        btnWord1.setBackground(new java.awt.Color(0, 51, 255));
-        btnWord1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        btnWord1.setForeground(new java.awt.Color(255, 255, 255));
-        btnWord1.setText("Word");
-        btnWord1.addActionListener(this::btnWord1ActionPerformed);
+        btnDocx.setBackground(new java.awt.Color(0, 51, 255));
+        btnDocx.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnDocx.setForeground(new java.awt.Color(255, 255, 255));
+        btnDocx.setText("DOCX");
+        btnDocx.addActionListener(this::btnDocxActionPerformed);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -347,7 +347,7 @@ public class Laporan extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnWord1)
+                .addComponent(btnDocx)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -357,13 +357,13 @@ public class Laporan extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnPDF1)
                                 .addComponent(btnExcel1)
                                 .addComponent(btnExcel21)
-                                .addComponent(btnWord1))))
+                                .addComponent(btnDocx))
+                            .addComponent(jLabel2)))
                     .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -435,11 +435,11 @@ public class Laporan extends javax.swing.JPanel {
         btnExcel22.setText("Excel .xlsx");
         btnExcel22.addActionListener(this::btnExcel22ActionPerformed);
 
-        btnWord2.setBackground(new java.awt.Color(0, 51, 255));
-        btnWord2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        btnWord2.setForeground(new java.awt.Color(255, 255, 255));
-        btnWord2.setText("Word");
-        btnWord2.addActionListener(this::btnWord2ActionPerformed);
+        btnDocx2.setBackground(new java.awt.Color(0, 51, 255));
+        btnDocx2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnDocx2.setForeground(new java.awt.Color(255, 255, 255));
+        btnDocx2.setText("DOCX");
+        btnDocx2.addActionListener(this::btnDocx2ActionPerformed);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -457,21 +457,21 @@ public class Laporan extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnWord2)
+                .addComponent(btnDocx2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(9, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPDF2)
                         .addComponent(btnExcel2)
                         .addComponent(btnExcel22)
-                        .addComponent(btnWord2)))
+                        .addComponent(btnDocx2))
+                    .addComponent(jButton5))
                 .addContainerGap())
         );
 
@@ -541,11 +541,11 @@ public class Laporan extends javax.swing.JPanel {
         btnExcel23.setText("Excel .xlsx");
         btnExcel23.addActionListener(this::btnExcel23ActionPerformed);
 
-        btnWord3.setBackground(new java.awt.Color(0, 51, 255));
-        btnWord3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        btnWord3.setForeground(new java.awt.Color(255, 255, 255));
-        btnWord3.setText("Word");
-        btnWord3.addActionListener(this::btnWord3ActionPerformed);
+        btnDocx3.setBackground(new java.awt.Color(0, 51, 255));
+        btnDocx3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnDocx3.setForeground(new java.awt.Color(255, 255, 255));
+        btnDocx3.setText("DOCX");
+        btnDocx3.addActionListener(this::btnDocx3ActionPerformed);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -563,21 +563,21 @@ public class Laporan extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnWord3)
+                .addComponent(btnDocx3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(9, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPDF3)
                         .addComponent(btnExcel3)
                         .addComponent(btnExcel23)
-                        .addComponent(btnWord3)))
+                        .addComponent(btnDocx3))
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -647,11 +647,11 @@ public class Laporan extends javax.swing.JPanel {
         btnExcel24.setText("Excel .xlsx");
         btnExcel24.addActionListener(this::btnExcel24ActionPerformed);
 
-        btnWord4.setBackground(new java.awt.Color(0, 51, 255));
-        btnWord4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        btnWord4.setForeground(new java.awt.Color(255, 255, 255));
-        btnWord4.setText("Word");
-        btnWord4.addActionListener(this::btnWord4ActionPerformed);
+        btnDocx4.setBackground(new java.awt.Color(0, 51, 255));
+        btnDocx4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnDocx4.setForeground(new java.awt.Color(255, 255, 255));
+        btnDocx4.setText("DOCX");
+        btnDocx4.addActionListener(this::btnDocx4ActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -669,21 +669,21 @@ public class Laporan extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnWord4)
+                .addComponent(btnDocx4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(9, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPDF4)
                         .addComponent(btnExcel4)
                         .addComponent(btnExcel24)
-                        .addComponent(btnWord4)))
+                        .addComponent(btnDocx4))
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -753,11 +753,11 @@ public class Laporan extends javax.swing.JPanel {
         btnExcel25.setText("Excel .xlsx");
         btnExcel25.addActionListener(this::btnExcel25ActionPerformed);
 
-        btnWord5.setBackground(new java.awt.Color(0, 51, 255));
-        btnWord5.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        btnWord5.setForeground(new java.awt.Color(255, 255, 255));
-        btnWord5.setText("Word");
-        btnWord5.addActionListener(this::btnWord5ActionPerformed);
+        btnDocx5.setBackground(new java.awt.Color(0, 51, 255));
+        btnDocx5.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnDocx5.setForeground(new java.awt.Color(255, 255, 255));
+        btnDocx5.setText("DOCX");
+        btnDocx5.addActionListener(this::btnDocx5ActionPerformed);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -775,21 +775,21 @@ public class Laporan extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnWord5)
+                .addComponent(btnDocx5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap(9, Short.MAX_VALUE)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPDF5)
                         .addComponent(btnExcel5)
                         .addComponent(btnExcel25)
-                        .addComponent(btnWord5)))
+                        .addComponent(btnDocx5))
+                    .addComponent(jButton9))
                 .addContainerGap())
         );
 
@@ -884,11 +884,11 @@ public class Laporan extends javax.swing.JPanel {
                 LaporanController.FormatLaporan.XLSX);
     }//GEN-LAST:event_btnExcel21ActionPerformed
 
-    private void btnWord1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWord1ActionPerformed
+    private void btnDocxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocxActionPerformed
         controller.cetakLaporan(
                 LaporanController.JenisLaporan.ALAT,
                 LaporanController.FormatLaporan.DOCX);
-    }//GEN-LAST:event_btnWord1ActionPerformed
+    }//GEN-LAST:event_btnDocxActionPerformed
 
     private void btnPDF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF2ActionPerformed
         controller.cetakLaporan(
@@ -908,11 +908,11 @@ public class Laporan extends javax.swing.JPanel {
                 LaporanController.FormatLaporan.XLSX);
     }//GEN-LAST:event_btnExcel22ActionPerformed
 
-    private void btnWord2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWord2ActionPerformed
+    private void btnDocx2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocx2ActionPerformed
         controller.cetakLaporan(
                 LaporanController.JenisLaporan.INSPEKSI,
                 LaporanController.FormatLaporan.DOCX);
-    }//GEN-LAST:event_btnWord2ActionPerformed
+    }//GEN-LAST:event_btnDocx2ActionPerformed
 
     private void btnPDF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF3ActionPerformed
         controller.cetakLaporan(
@@ -932,11 +932,11 @@ public class Laporan extends javax.swing.JPanel {
                 LaporanController.FormatLaporan.XLSX);
     }//GEN-LAST:event_btnExcel23ActionPerformed
 
-    private void btnWord3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWord3ActionPerformed
+    private void btnDocx3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocx3ActionPerformed
         controller.cetakLaporan(
                 LaporanController.JenisLaporan.MAINTENANCE,
                 LaporanController.FormatLaporan.DOCX);
-    }//GEN-LAST:event_btnWord3ActionPerformed
+    }//GEN-LAST:event_btnDocx3ActionPerformed
 
     private void btnPDF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF4ActionPerformed
         controller.cetakLaporan(
@@ -956,11 +956,11 @@ public class Laporan extends javax.swing.JPanel {
                 LaporanController.FormatLaporan.XLSX);
     }//GEN-LAST:event_btnExcel24ActionPerformed
 
-    private void btnWord4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWord4ActionPerformed
+    private void btnDocx4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocx4ActionPerformed
         controller.cetakLaporan(
                 LaporanController.JenisLaporan.PENGGUNA,
                 LaporanController.FormatLaporan.DOCX);
-    }//GEN-LAST:event_btnWord4ActionPerformed
+    }//GEN-LAST:event_btnDocx4ActionPerformed
 
     private void btnPDF5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF5ActionPerformed
         controller.cetakLaporan(
@@ -980,14 +980,19 @@ public class Laporan extends javax.swing.JPanel {
                 LaporanController.FormatLaporan.XLSX);
     }//GEN-LAST:event_btnExcel25ActionPerformed
 
-    private void btnWord5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWord5ActionPerformed
+    private void btnDocx5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocx5ActionPerformed
         controller.cetakLaporan(
                 LaporanController.JenisLaporan.AKTIVITAS,
                 LaporanController.FormatLaporan.DOCX);
-    }//GEN-LAST:event_btnWord5ActionPerformed
+    }//GEN-LAST:event_btnDocx5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDocx;
+    private javax.swing.JButton btnDocx2;
+    private javax.swing.JButton btnDocx3;
+    private javax.swing.JButton btnDocx4;
+    private javax.swing.JButton btnDocx5;
     private javax.swing.JButton btnExcel1;
     private javax.swing.JButton btnExcel2;
     private javax.swing.JButton btnExcel21;
@@ -1003,11 +1008,6 @@ public class Laporan extends javax.swing.JPanel {
     private javax.swing.JButton btnPDF3;
     private javax.swing.JButton btnPDF4;
     private javax.swing.JButton btnPDF5;
-    private javax.swing.JButton btnWord1;
-    private javax.swing.JButton btnWord2;
-    private javax.swing.JButton btnWord3;
-    private javax.swing.JButton btnWord4;
-    private javax.swing.JButton btnWord5;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;

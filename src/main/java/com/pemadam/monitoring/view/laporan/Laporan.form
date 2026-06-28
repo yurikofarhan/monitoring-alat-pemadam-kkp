@@ -171,7 +171,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnExcel21" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnWord1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDocx" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -183,14 +183,14 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel2" alignment="3" max="32767" attributes="0"/>
-                                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="btnPDF1" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="btnExcel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="btnExcel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="btnWord1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnDocx" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="jButton7" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -268,7 +268,7 @@
                         <Property name="text" type="java.lang.String" value="Export File :"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnWord1">
+                    <Component class="javax.swing.JButton" name="btnDocx">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -279,10 +279,10 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Word"/>
+                        <Property name="text" type="java.lang.String" value="DOCX"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWord1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDocxActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -362,7 +362,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnExcel22" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnWord2" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDocx2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -371,15 +371,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="9" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel3" alignment="3" max="32767" attributes="0"/>
                                       <Component id="btnPDF2" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnExcel2" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnExcel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnWord2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnDocx2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -454,7 +454,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcel22ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnWord2">
+                    <Component class="javax.swing.JButton" name="btnDocx2">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -465,10 +465,10 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Word"/>
+                        <Property name="text" type="java.lang.String" value="DOCX"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWord2ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDocx2ActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -549,7 +549,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnExcel23" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnWord3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDocx3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -558,15 +558,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="9" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel4" alignment="3" max="32767" attributes="0"/>
                                       <Component id="btnPDF3" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnExcel3" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnExcel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnWord3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnDocx3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -641,7 +641,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcel23ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnWord3">
+                    <Component class="javax.swing.JButton" name="btnDocx3">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -652,10 +652,10 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Word"/>
+                        <Property name="text" type="java.lang.String" value="DOCX"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWord3ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDocx3ActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -736,7 +736,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnExcel24" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnWord4" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDocx4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -745,15 +745,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="9" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel5" alignment="3" max="32767" attributes="0"/>
                                       <Component id="btnPDF4" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnExcel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnExcel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnWord4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnDocx4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -828,7 +828,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcel24ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnWord4">
+                    <Component class="javax.swing.JButton" name="btnDocx4">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -839,10 +839,10 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Word"/>
+                        <Property name="text" type="java.lang.String" value="DOCX"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWord4ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDocx4ActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -923,7 +923,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnExcel25" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnWord5" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDocx5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -932,15 +932,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="9" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel6" alignment="3" max="32767" attributes="0"/>
                                       <Component id="btnPDF5" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnExcel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnExcel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnWord5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnDocx5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1015,7 +1015,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcel25ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnWord5">
+                    <Component class="javax.swing.JButton" name="btnDocx5">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -1026,10 +1026,10 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Word"/>
+                        <Property name="text" type="java.lang.String" value="DOCX"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWord5ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDocx5ActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
