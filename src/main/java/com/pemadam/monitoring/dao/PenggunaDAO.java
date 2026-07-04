@@ -25,9 +25,7 @@ public class PenggunaDAO {
 
         String sql = "SELECT * FROM pengguna";
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
 
@@ -37,34 +35,30 @@ public class PenggunaDAO {
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getString("no_telp"),
-                        rs.getString("role")   
+                        rs.getString("role")
                 );
 
                 list.add(p);
             }
 
         } catch (Exception e) {
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
 
         return list;
     }
-    
+
     public int insert(PenggunaModel p) {
+        String sql = "INSERT INTO pengguna (nama_pengguna, username, password, no_telp, role) VALUES (?, ?, ?, ?, ?)";
 
-        String sql = "INSERT INTO pengguna "
-                + "(nama_pengguna, username, password, no_telp, role) "
-                + "VALUES (?, ?, ?, ?, ?)";
-
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, p.getNamaPengguna());
             ps.setString(2, p.getUsername());
-            ps.setString(3, p.getPassword());
+            ps.setString(3, org.mindrot.jbcrypt.BCrypt.hashpw(p.getPassword(), org.mindrot.jbcrypt.BCrypt.gensalt()));
             ps.setString(4, p.getNoTelp());
             ps.setString(5, p.getRole());
-            
+
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -78,28 +72,24 @@ public class PenggunaDAO {
         }
         return 0;
     }
-    
+
     public boolean update(PenggunaModel p) {
         boolean isUpdatePassword = p.getPassword() != null && !p.getPassword().isEmpty();
-
         String sql;
 
         if (isUpdatePassword) {
-            // update dengan password
             sql = "UPDATE pengguna SET nama_pengguna=?, username=?, password=?, no_telp=?, role=? WHERE id_pengguna=?";
         } else {
-            // TANPA password
             sql = "UPDATE pengguna SET nama_pengguna=?, username=?, no_telp=?, role=? WHERE id_pengguna=?";
         }
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, p.getNamaPengguna());
             ps.setString(2, p.getUsername());
 
             if (isUpdatePassword) {
-                ps.setString(3, p.getPassword());
+                ps.setString(3, org.mindrot.jbcrypt.BCrypt.hashpw(p.getPassword(), org.mindrot.jbcrypt.BCrypt.gensalt()));
                 ps.setString(4, p.getNoTelp());
                 ps.setString(5, p.getRole());
                 ps.setInt(6, p.getIdPengguna());
@@ -115,14 +105,12 @@ public class PenggunaDAO {
             e.printStackTrace();
             return false;
         }
-    
     }
-    
+
     public PenggunaModel getById(int id) {
         String sql = "SELECT * FROM pengguna WHERE id_pengguna = ?";
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -144,12 +132,11 @@ public class PenggunaDAO {
 
         return null;
     }
-    
+
     public boolean delete(int id) {
         String sql = "DELETE FROM pengguna WHERE id_pengguna = ?";
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, id);
 
@@ -161,13 +148,12 @@ public class PenggunaDAO {
             return false;
         }
     }
-    
+
     public PenggunaModel getByUsername(String input) {
 
         String sql = "SELECT * FROM pengguna WHERE username=?";
 
-        try (Connection conn = Koneksi.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, input);
 
@@ -190,5 +176,5 @@ public class PenggunaDAO {
 
         return null;
     }
-    
+
 }
