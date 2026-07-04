@@ -45,7 +45,22 @@ Aplikasi desktop berbasis **Java Swing** yang digunakan untuk memonitor kondisi 
 - 📊 Dashboard Monitoring
 - 📄 Cetak Laporan menggunakan iReport
 - 📜 Log Aktivitas Pengguna
-- 🖼️ Upload Gambar Alat dan Bukti Maintenance
+- 🖼️ Upload Gambar Bukti Maintenance
+
+---
+
+## 👥 Anggota Kelompok
+
+| No | Nama | NPM | Branch |
+|----|------|-----|--------|
+| 1 | Yuriko Farhan | 202343501378 |
+| 2 | Muhammad Dennis Abimanyu | 202343501359 |
+| 3 | Dwi Wahyuni | 202343501396 |
+| 4 | Syahria Mufida Indri Maulia | 202343501404 |
+| 5 | Riska Hermeinasyah Fatihah | 202343501366 |
+| 6 | Muhamad Arief Budhiyanto | 202343501367 |
+| 7 | Muhammad Fahrezy | 202343501395 |
+| 8 | Muhammad Hafizh Mukhlish Iskandar | 202343501381 |
 
 ---
 
