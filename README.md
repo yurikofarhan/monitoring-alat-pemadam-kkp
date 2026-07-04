@@ -1,8 +1,57 @@
 # 🚒 Sistem Monitoring Alat Damkar
+Aplikasi desktop berbasis **Java Swing** yang digunakan untuk memonitor kondisi alat pemadam kebakaran, mulai dari pendataan alat, inspeksi, maintenance, hingga pencatatan log aktivitas pengguna.
+
+---
+
+## 🔑 Informasi Login
+
+### 👨‍💼 Admin
+| Username | Password |
+|----------|----------|
+| `admin` | `admin` |
+
+### 👨‍🔧 Petugas
+| Username | Password |
+|----------|----------|
+| `petugas` | `petugas` |
+
+> **Catatan:** Password pada database disimpan menggunakan **BCrypt** sehingga lebih aman.
+
+---
+
+## 🛠️ Spesifikasi Aplikasi
+
+| Komponen | Teknologi |
+|----------|-----------|
+| Bahasa Pemrograman | Java |
+| IDE | Apache NetBeans 29 |
+| Build Tool | Apache Maven |
+| Framework GUI | Java Swing |
+| Database | MySQL |
+| Library Enkripsi Password | BCrypt |
+| Library Reporting | iReport 5.6 (JasperReports) |
+| Arsitektur | MVC (Model-View-Controller) |
+
+---
+
+## ✨ Fitur Utama
+
+- 🔐 Login Multi Role (Admin & Petugas)
+- 👥 Manajemen Pengguna
+- 🚒 Manajemen Data Alat Pemadam
+- 📍 Manajemen Lokasi Alat
+- 📝 Inspeksi Alat
+- 🔧 Maintenance Alat
+- 📊 Dashboard Monitoring
+- 📄 Cetak Laporan menggunakan iReport
+- 📜 Log Aktivitas Pengguna
+- 🖼️ Upload Gambar Alat dan Bukti Maintenance
+
+---
 
 ## 📊 Entity Relationship Diagram (ERD)
 
-Berikut adalah visualisasi struktur database yang akan digunakan dalam sistem ini:
+Berikut adalah visualisasi struktur database yang digunakan dalam sistem ini:
 
 ```mermaid
 erDiagram
@@ -19,24 +68,17 @@ erDiagram
         varchar nama_alat
         enum jenis_alat "APAR, APAB, HYDRANT, SPRINKLER, SUPPRESSION, PENDUKUNG, PROTEKSI"
         datetime tanggal_pembelian
-        varchar image
         varchar deskripsi
         int id_lokasi FK
-        datetime created_at
-        datetime updated_at
     }
 
     pengguna {
         int id_pengguna PK
         varchar nama_pengguna
-        varchar email
         varchar username
         varchar password
         varchar no_telp
-        varchar image
         enum role "admin, petugas"
-        datetime created_at
-        datetime updated_at
     }
 
     lokasi_alat {
@@ -49,14 +91,12 @@ erDiagram
     inspeksi_alat {
         int id_inspeksi PK
         datetime tanggal_inspeksi
-        enum kondisi "baik, cukup, rusak_ringan, rusak_berat, tidak_lengkap"
+        enum kondisi "baik, rusak_ringan, rusak_berat"
         enum status "layak, perlu_perawatan, tidak_layak, maintenance, hilang"
         enum status_inspeksi "draf, proses, selesai"
         varchar keterangan
         int id_pengguna FK
         int id_alat FK
-        datetime created_at
-        datetime updated_at
     }
 
     maintenance_alat {
@@ -77,6 +117,7 @@ erDiagram
         datetime waktu
         varchar aksi
         varchar tabel_terkait
+        int record_id
         varchar deskripsi
     }
 
