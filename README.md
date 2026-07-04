@@ -51,8 +51,8 @@ Aplikasi desktop berbasis **Java Swing** yang digunakan untuk memonitor kondisi 
 
 ## 👥 Anggota Kelompok
 
-| No | Nama | NPM | Branch |
-|----|------|-----|--------|
+| No | Nama | NPM |
+|----|------|-----|
 | 1 | Yuriko Farhan | 202343501378 |
 | 2 | Muhammad Dennis Abimanyu | 202343501359 |
 | 3 | Dwi Wahyuni | 202343501396 |
